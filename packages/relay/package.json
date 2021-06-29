@@ -1,0 +1,7 @@
+{
+  "name": "@bucketly/relay",
+  "version": "1.0.0",
+  "description": "Relay of Bucketly app",
+  "main": "index.js",
+  "license": "MIT"
+}

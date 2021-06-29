@@ -1,0 +1,7 @@
+{
+  "name": "@bucketly/frontend",
+  "version": "1.0.0",
+  "description": "Frontend of Bucketly app",
+  "main": "index.js",
+  "license": "MIT"
+}
