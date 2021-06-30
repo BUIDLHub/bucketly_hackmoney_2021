@@ -1,8 +1,13 @@
 import config from '../config/config';
-import ethers from 'ethers';
+import {ethers} from 'ethers';
 
-const getL1WsProvider = () => {
-  const provider = ethers.getDefaultProvider(config.web3.localProvider)
+let provider:ethers.providers.Provider|undefined = undefined;
+
+const getL1WsProvider = ():ethers.providers.Provider => {
+  if(provider) {
+    return provider; //cached
+  }
+  provider = new ethers.providers.JsonRpcProvider(config.web3.localProvider);
   return provider;
 };
 

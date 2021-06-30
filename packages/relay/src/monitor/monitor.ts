@@ -3,10 +3,12 @@ import config from '../config/config';
 import web3Functions from '../web3/web3Functions';
 
 const startL1BucketFactoryMonitor = async () => {
+
   console.log("L1BucketFactoryMonitor started");
   const bucketFactoryAddress = config.web3.bucketFactory;
   const bucketFactoryAbi = [""];
   const provider = web3Functions.getL1WsProvider();
+  console.log("Provider", provider);
   const bucketFactoryContract = new ethers.Contract(
     bucketFactoryAddress,
     bucketFactoryAbi,
