@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 
-describe("Token contract", function() {
-  it("Deployment should assign the total supply of tokens to the owner", async function() {
+describe("BucketFactory contract", function() {
+  it("Check if contract is deployed properly by calling public value", async function() {
     const [owner] = await ethers.getSigners();
 
     const BucketFactory = await ethers.getContractFactory("BucketFactory");
@@ -10,5 +10,18 @@ describe("Token contract", function() {
 
     const testedValue = await BucketFactoryInstance.testValue.call();
     expect(await testedValue).to.equal(42);
+    expect()
+  });
+
+  it("Should emit an event when executing createBucket function", async function() {
+    const [owner] = await ethers.getSigners();
+
+    const BucketFactory = await ethers.getContractFactory("BucketFactory");
+
+    const BucketFactoryInstance = await BucketFactory.deploy();
+
+    await expect(BucketFactoryInstance.createBucket())
+    .to.emit(BucketFactoryInstance, 'BucketCreated')
+    .withArgs(42);
   });
 });
