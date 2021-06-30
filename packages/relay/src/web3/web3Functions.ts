@@ -1,5 +1,5 @@
 import config from '../config/config';
-import {ethers} from 'ethers';
+import { ethers } from 'ethers';
 
 let provider:ethers.providers.Provider|undefined = undefined;
 
