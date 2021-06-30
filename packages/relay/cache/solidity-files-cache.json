@@ -1,0 +1,39 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\BucketFactory.sol": {
+      "lastModificationDate": 1625062672516,
+      "contentHash": "48eefbda9e2eb759cabdaa203243c5d3",
+      "sourceName": "contracts/BucketFactory.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "BucketFactory"
+      ]
+    }
+  }
+}
