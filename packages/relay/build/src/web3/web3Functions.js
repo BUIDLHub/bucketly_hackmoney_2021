@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = __importDefault(require("../config/config"));
 const ethers_1 = require("ethers");
 let provider = undefined;
-const getL1WsProvider = () => {
+const getL1Provider = () => {
     if (provider) {
         return provider; //cached
     }
@@ -14,5 +14,5 @@ const getL1WsProvider = () => {
     return provider;
 };
 exports.default = {
-    getL1WsProvider,
+    getL1Provider,
 };

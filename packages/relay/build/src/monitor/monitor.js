@@ -20,13 +20,12 @@ const startL1BucketFactoryMonitor = () => __awaiter(void 0, void 0, void 0, func
     console.log("L1BucketFactoryMonitor started");
     const bucketFactoryAddress = config_1.default.web3.bucketFactory;
     const bucketFactoryAbi = BucketFactory_json_1.default.abi;
-    const provider = web3Functions_1.default.getL1WsProvider();
-    console.log("Provider", provider);
+    const provider = web3Functions_1.default.getL1Provider();
     const bucketFactoryContract = new ethers_1.ethers.Contract(bucketFactoryAddress, bucketFactoryAbi, provider);
-    // bucketFactoryContract.on("BucketCreated", (token, triggerAmount, expirationDate) => {
-    //   console.log(`New bucket created ${ token }, trigger amount: ${ triggerAmount } and expiration date: ${ expirationDate}`);
-    //   //save into db
-    // });
+    bucketFactoryContract.on("BucketCreated", (token, triggerAmount, expirationDate) => {
+        console.log(`New bucket created ${token}, trigger amount: ${triggerAmount} and expiration date: ${expirationDate}`);
+        //save into db
+    });
 });
 exports.default = {
     startL1BucketFactoryMonitor
