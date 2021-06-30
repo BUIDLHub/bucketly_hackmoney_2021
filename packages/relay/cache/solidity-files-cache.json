@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\BucketFactory.sol": {
-      "lastModificationDate": 1625062672516,
-      "contentHash": "48eefbda9e2eb759cabdaa203243c5d3",
+      "lastModificationDate": 1625064251290,
+      "contentHash": "ebbbb01f512cc27870246f93a9ebd669",
       "sourceName": "contracts/BucketFactory.sol",
       "solcConfig": {
         "version": "0.8.4",
