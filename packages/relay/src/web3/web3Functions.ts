@@ -2,7 +2,7 @@ import config from '../config/config';
 import ethers from 'ethers';
 
 const getL1WsProvider = () => {
-  const provider = new ethers.providers.WebSocketProvider(config.web3.l1WsProvider, 5);
+  const provider = ethers.getDefaultProvider(config.web3.localProvider)
   return provider;
 };
 

@@ -9,7 +9,8 @@ const WEB3 = {
   l1HttpProvider: "https://goerli-light.eth.linkpool.io",
   l1WsProvider: "wss://goerli-light.eth.linkpool.io/ws",
   l2HttpProvider: "https://matic-mumbai.chainstacklabs.com",
-  l2WsProvider: "wss://ws-matic-mumbai.chainstacklabs.com"
+  l2WsProvider: "wss://ws-matic-mumbai.chainstacklabs.com",
+  localProvider: "http://127.0.0.1:8545/"
 }
 
 const config = {

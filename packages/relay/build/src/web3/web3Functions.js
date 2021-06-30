@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = __importDefault(require("../config/config"));
 const ethers_1 = __importDefault(require("ethers"));
 const getL1WsProvider = () => {
-    const provider = new ethers_1.default.providers.WebSocketProvider(config_1.default.web3.l1WsProvider, 5);
+    const provider = ethers_1.default.getDefaultProvider(config_1.default.web3.localProvider);
     return provider;
 };
 exports.default = {
