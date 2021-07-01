@@ -3,10 +3,7 @@ import { useWeb3React } from '@web3-react/core';
 import { injected } from '../util';
 
 const WalletConnect = () => {
-  const { activate, deactivate, connector } = useWeb3React();
-  // const currentConnector = injected
-  // const activating = currentConnector === activatingConnector
-  // const connected = currentConnector === connector
+  const { activate } = useWeb3React();
 
   return (
     <Button variant="outline-secondary" className="fw-normal rounded-0"
