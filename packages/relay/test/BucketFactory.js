@@ -20,8 +20,7 @@ describe("BucketFactory contract", function() {
 
     const BucketFactoryInstance = await BucketFactory.deploy();
 
-    await expect(BucketFactoryInstance.createBucket())
+    await expect(BucketFactoryInstance.createBucket("DAI", 10000))
     .to.emit(BucketFactoryInstance, 'BucketCreated')
-    .withArgs(42);
   });
 });

@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 
 let provider:ethers.providers.Provider|undefined = undefined;
 
-const getL1WsProvider = ():ethers.providers.Provider => {
+const getL1Provider = ():ethers.providers.Provider => {
   if(provider) {
     return provider; //cached
   }
@@ -12,5 +12,5 @@ const getL1WsProvider = ():ethers.providers.Provider => {
 };
 
 export default {
-  getL1WsProvider,
+  getL1Provider,
 }
