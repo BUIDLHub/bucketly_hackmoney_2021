@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const ethers_1 = require("ethers");
 const config_1 = __importDefault(require("../config/config"));
-const web3Functions_1 = __importDefault(require("../web3/web3Functions"));
+const web3Functions_1 = __importDefault(require("../functions/web3Functions"));
 const BucketFactory_json_1 = __importDefault(require("../contracts/contracts/BucketFactory.sol/BucketFactory.json"));
 const startL1BucketFactoryMonitor = () => __awaiter(void 0, void 0, void 0, function* () {
     console.log("L1BucketFactoryMonitor started");

@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import config from '../config/config';
-import web3Functions from '../web3/web3Functions';
+import web3Functions from '../functions/web3Functions';
 import bucketFactoryInterface from '../contracts/contracts/BucketFactory.sol/BucketFactory.json'
 
 const startL1BucketFactoryMonitor = async () => {

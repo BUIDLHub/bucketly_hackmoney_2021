@@ -13,8 +13,14 @@ const WEB3 = {
     l2WsProvider: "wss://ws-matic-mumbai.chainstacklabs.com",
     localProvider: "http://127.0.0.1:8545/"
 };
+const DB = {
+    dbname: "bucketlyMainDB",
+    bucketsTableName: "bucketsTable",
+    depositsTableName: "depositsTable"
+};
 const config = {
     server: SERVER,
-    web3: WEB3
+    web3: WEB3,
+    db: DB
 };
 exports.default = config;
