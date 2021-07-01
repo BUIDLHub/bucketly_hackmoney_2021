@@ -27,6 +27,34 @@ const initDatabase = () => {
         console.log('Database closed');
     });
 };
+const insertNewBucket = (id, token, expirationDate, totalAmount, triggerAmount) => {
+    let db = new sqlite3_1.default.Database(config_1.default.db.dbname, err => {
+        if (err)
+            throw err;
+        console.log('Database started on ' + config_1.default.db.dbname);
+    });
+    db.run(`INSERT INTO ${config_1.default.db.bucketsTableName} (id, token, expirationDate, totalAmount, triggerAmount) VALUES (1, 'DAI', 1625243279, 0, 10000) `, err => {
+        if (err)
+            throw err;
+        console.log('New bucket inserted into ' + config_1.default.db.bucketsTableName);
+    });
+};
+const seeDb = () => {
+    let db = new sqlite3_1.default.Database(config_1.default.db.dbname, err => {
+        if (err)
+            throw err;
+        console.log('Database started on ' + config_1.default.db.dbname);
+    });
+    // Line to populate the table for tests
+    // db.run(`INSERT INTO ${ config.db.bucketsTableName } (id, token, expirationDate, totalAmount, triggerAmount) VALUES (1, 'DAI', 1625243279, 0, 10000) `)
+    db.get(`SELECT * FROM ${config_1.default.db.bucketsTableName}`, (err, data) => {
+        if (err)
+            throw err;
+        console.log(data);
+    });
+};
 exports.default = {
-    initDatabase
+    initDatabase,
+    insertNewBucket,
+    seeDb
 };
