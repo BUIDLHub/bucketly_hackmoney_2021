@@ -16,11 +16,11 @@ const ethers_1 = require("ethers");
 const config_1 = __importDefault(require("../config/config"));
 const web3Functions_1 = __importDefault(require("../functions/web3Functions"));
 const dbFunctions_1 = __importDefault(require("../functions/dbFunctions"));
-const BucketFactory_json_1 = __importDefault(require("../contracts/contracts/BucketFactory.sol/BucketFactory.json"));
+const BucketERC20_json_1 = __importDefault(require("../contracts/contracts/BucketERC20.sol/BucketERC20.json"));
 const startL1BucketFactoryMonitor = () => __awaiter(void 0, void 0, void 0, function* () {
     console.log("L1BucketFactoryMonitor started");
     const bucketFactoryAddress = config_1.default.web3.bucketFactory;
-    const bucketFactoryAbi = BucketFactory_json_1.default.abi;
+    const bucketFactoryAbi = BucketERC20_json_1.default.abi;
     const provider = web3Functions_1.default.getL1Provider();
     const bucketFactoryContract = new ethers_1.ethers.Contract(bucketFactoryAddress, bucketFactoryAbi, provider);
     bucketFactoryContract.on("BucketCreated", (id, token, triggerAmount, expirationDate) => {

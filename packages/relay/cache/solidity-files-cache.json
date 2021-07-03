@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\BucketERC20.sol": {
-      "lastModificationDate": 1625333324352,
-      "contentHash": "bc983f099405d7ca2ebfddf56cb12c83",
+      "lastModificationDate": 1625347143278,
+      "contentHash": "a56454d952cc19c10f0a01d41fc87b5e",
       "sourceName": "contracts/BucketERC20.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -34,7 +34,8 @@
         "^0.8.4"
       ],
       "artifacts": [
-        "BucketERC20"
+        "BucketERC20",
+        "IDepositManager"
       ]
     },
     "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {

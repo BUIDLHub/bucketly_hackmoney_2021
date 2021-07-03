@@ -1,15 +1,28 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
+interface IDepositManager {
+    function depositEther() external payable;
+    function transferAssets(
+        address _token,
+        address _user,
+        uint256 _amountOrNFTId
+    ) external;
+    function depositERC20(address _token, uint256 _amount) external;
+    function depositERC721(address _token, uint256 _tokenId) external;
+}
+
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract BucketERC20 {
   uint public bucketIdCount;
   uint public activeBucketId;
   uint public minimumReserve;
+  uint public thresholdAmount;
   uint256 public expirationTime;
   uint256 public expirationDate;
   address public erc20Address;
+  address public depositManagerContract;
   string public tokenName;
 
   mapping (uint => mapping (address => uint)) public deposits;
@@ -20,22 +33,24 @@ contract BucketERC20 {
   event TransferToPoly(uint indexed bucketId, uint indexed totalAmount);
   event InsufficientReserve(uint indexed bucketId);
   
-  constructor(address _erc20Address, string memory _tokenName, uint _triggerAmount, uint _minimumReserve, uint256 _expirationTime) {
-    bucketIdCount = 0;
+  constructor(address _depositManagerContract, address _erc20Address, string memory _tokenName, uint _thresholdAmount, uint _minimumReserve, uint256 _expirationTime) {
+    depositManagerContract = _depositManagerContract;
     erc20Address = _erc20Address;
+    bucketIdCount = 0;
     minimumReserve = _minimumReserve;
     tokenName = _tokenName;
+    thresholdAmount = _thresholdAmount;
     expirationTime = _expirationTime;
 
-    createBucket(_triggerAmount);
+    createBucket();
   }
 
-  function createBucket(uint triggerAmount) public {
+  function createBucket() public {
     bucketIdCount = bucketIdCount + 1;
     uint id = bucketIdCount;
     activeBucketId = bucketIdCount;
     expirationDate = block.timestamp + expirationTime;
-    emit BucketCreated(id, tokenName, triggerAmount, expirationDate);
+    emit BucketCreated(id, tokenName, thresholdAmount, expirationDate);
   }
 
   function deposit(uint depositAmount) public {
@@ -47,7 +62,14 @@ contract BucketERC20 {
     emit Deposit(activeBucketId, depositAmount, msg.sender);
   }
 
-  function makeTransfer() public {}
+  function makeTransfer(uint _amount) public {
+    ERC20 tokenContract = ERC20(erc20Address);
+    require(tokenContract.balanceOf(address(this)) >= _amount, "Insufficient balance");
+    require(tokenContract.approve(depositManagerContract, _amount), "Could not approve depositManagerContract");
+    IDepositManager(depositManagerContract).depositERC20(erc20Address, _amount);
+    createBucket();
+    emit TransferToPoly(activeBucketId, _amount);
+  }
   
   function refund() public {}
 }

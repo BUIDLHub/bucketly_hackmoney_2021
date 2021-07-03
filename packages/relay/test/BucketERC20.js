@@ -1,8 +1,10 @@
 const { expect } = require("chai");
+const config = require("../build/src/config/config.js");
 
 describe("Test BucketERC20 contract deployment and create bucket function", () => {
   let BucketERC20Instance;
   let DummyERC20Instance;
+  const depositManagerContract = config.default.web3.DepositManager;
   
   beforeEach(async () => {
     // Deploy dummy ERC20 contract 
@@ -10,9 +12,8 @@ describe("Test BucketERC20 contract deployment and create bucket function", () =
     DummyERC20Instance = await DummyERC20.deploy("1000000");
 
     // Deploy Bucket contract
-    // Reminder: constructor(address _erc20Address, string memory _tokenName, uint _triggerAmount, uint _minimumReserve, uint256 _expirationTime)
     const BucketERC20 = await ethers.getContractFactory("BucketERC20");
-    BucketERC20Instance = await BucketERC20.deploy(DummyERC20Instance.address, "DMY", "1000", "100", "300");
+    BucketERC20Instance = await BucketERC20.deploy(depositManagerContract, DummyERC20Instance.address, "DMY", "1000", "100", "300");
   })
 
   it("Check if contract is deployed properly by calling public value", async () => {

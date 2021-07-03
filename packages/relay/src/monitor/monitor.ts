@@ -2,13 +2,13 @@ import { ethers } from 'ethers';
 import config from '../config/config';
 import web3Functions from '../functions/web3Functions';
 import dbFunctions from '../functions/dbFunctions';
-import bucketFactoryInterface from '../contracts/contracts/BucketFactory.sol/BucketFactory.json'
+import bucketERC20 from '../contracts/contracts/BucketERC20.sol/BucketERC20.json'
 
 const startL1BucketFactoryMonitor = async () => {
 
   console.log("L1BucketFactoryMonitor started");
   const bucketFactoryAddress = config.web3.bucketFactory;
-  const bucketFactoryAbi = bucketFactoryInterface.abi;
+  const bucketFactoryAbi = bucketERC20.abi;
   const provider = web3Functions.getL1Provider();
   const bucketFactoryContract = new ethers.Contract(
     bucketFactoryAddress,
