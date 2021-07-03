@@ -1,17 +1,10 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-<<<<<<< HEAD
-    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\BucketERC20.sol": {
-      "lastModificationDate": 1625347143278,
-      "contentHash": "a56454d952cc19c10f0a01d41fc87b5e",
-      "sourceName": "contracts/BucketERC20.sol",
-=======
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/BaseAccess.sol": {
-      "lastModificationDate": 1625341201482,
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\BaseAccess.sol": {
+      "lastModificationDate": 1625348022958,
       "contentHash": "8a4802e36b31489f3136e8a1fdcef8c5",
       "sourceName": "contracts/BaseAccess.sol",
->>>>>>> 6a624b0fd8f7da5f94a006eb64d7965b9efb123c
       "solcConfig": {
         "version": "0.8.0",
         "settings": {
@@ -43,16 +36,11 @@
         "^0.8.0"
       ],
       "artifacts": [
-<<<<<<< HEAD
-        "BucketERC20",
-        "IDepositManager"
-=======
         "BaseAccess"
->>>>>>> 6a624b0fd8f7da5f94a006eb64d7965b9efb123c
       ]
     },
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/LibAccess.sol": {
-      "lastModificationDate": 1625341148945,
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\LibAccess.sol": {
+      "lastModificationDate": 1625348022959,
       "contentHash": "4ed6e0f234887c561b7f7bee3ff31007",
       "sourceName": "contracts/LibAccess.sol",
       "solcConfig": {
@@ -87,8 +75,8 @@
         "LibAccess"
       ]
     },
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/StorageTypes.sol": {
-      "lastModificationDate": 1625341164256,
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\StorageTypes.sol": {
+      "lastModificationDate": 1625348022960,
       "contentHash": "a8e78acaeab4c7d579f8da0ce6c1c133",
       "sourceName": "contracts/StorageTypes.sol",
       "solcConfig": {
@@ -121,8 +109,8 @@
         "StorageTypes"
       ]
     },
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/LibStorage.sol": {
-      "lastModificationDate": 1625341159341,
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\LibStorage.sol": {
+      "lastModificationDate": 1625348022960,
       "contentHash": "6aef02329536001ebcfc8057f7b8ade5",
       "sourceName": "contracts/LibStorage.sol",
       "solcConfig": {
@@ -157,8 +145,8 @@
         "LibStorage"
       ]
     },
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/L2Bucket.sol": {
-      "lastModificationDate": 1625341229292,
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\L2Bucket.sol": {
+      "lastModificationDate": 1625348022959,
       "contentHash": "4c9de9952e4e48ed08b51c4101ce824e",
       "sourceName": "contracts/L2Bucket.sol",
       "solcConfig": {
@@ -198,8 +186,8 @@
         "L2Bucket"
       ]
     },
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/LibMerkle.sol": {
-      "lastModificationDate": 1625341154097,
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\LibMerkle.sol": {
+      "lastModificationDate": 1625348022960,
       "contentHash": "43a0e7fb20af3b6298567eee64191cef",
       "sourceName": "contracts/LibMerkle.sol",
       "solcConfig": {
@@ -235,8 +223,8 @@
         "LibMerkle"
       ]
     },
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1625341018820,
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
+      "lastModificationDate": 1625329078807,
       "contentHash": "0eac3e1a83ee62326ca007811285b274",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
@@ -269,8 +257,8 @@
         "IERC20"
       ]
     },
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/node_modules/hardhat/console.sol": {
-      "lastModificationDate": 1625060262376,
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\node_modules\\hardhat\\console.sol": {
+      "lastModificationDate": 1625061698359,
       "contentHash": "cc4777addd464ea56fa35b1c45df0591",
       "sourceName": "hardhat/console.sol",
       "solcConfig": {
@@ -303,8 +291,8 @@
         "console"
       ]
     },
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
-      "lastModificationDate": 1625341018853,
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\IERC20Metadata.sol": {
+      "lastModificationDate": 1625329078809,
       "contentHash": "aa1be06992a99bb7393b26a6af3c4dfb",
       "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
       "solcConfig": {
@@ -339,8 +327,8 @@
         "IERC20Metadata"
       ]
     },
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
-      "lastModificationDate": 1625341018821,
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
+      "lastModificationDate": 1625329078757,
       "contentHash": "acad756301f0fb200ecc66138e8cd5c5",
       "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
       "solcConfig": {
@@ -377,8 +365,8 @@
         "ERC20"
       ]
     },
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/node_modules/@openzeppelin/contracts/utils/Context.sol": {
-      "lastModificationDate": 1625341018727,
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1625329078721,
       "contentHash": "07f148e0d44b2ffc23b3ae6dd6e38cfb",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
@@ -411,9 +399,9 @@
         "Context"
       ]
     },
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/DummyERC20.sol": {
-      "lastModificationDate": 1625341139764,
-      "contentHash": "b301bb7bf24877c5fb768546ae394bbf",
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\DummyERC20.sol": {
+      "lastModificationDate": 1625334031079,
+      "contentHash": "4f7e9703847cc4539d2268070ca7cc21",
       "sourceName": "contracts/DummyERC20.sol",
       "solcConfig": {
         "version": "0.8.0",
@@ -447,9 +435,9 @@
         "DummyERC20"
       ]
     },
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/BucketERC20.sol": {
-      "lastModificationDate": 1625341135590,
-      "contentHash": "6351a6d18ac9cf4b3c1e9a3bf22d2131",
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\BucketERC20.sol": {
+      "lastModificationDate": 1625348023083,
+      "contentHash": "a691cfc111f052698bdc6668ee281c6a",
       "sourceName": "contracts/BucketERC20.sol",
       "solcConfig": {
         "version": "0.8.0",
@@ -480,7 +468,8 @@
         "^0.8.0"
       ],
       "artifacts": [
-        "BucketERC20"
+        "BucketERC20",
+        "IDepositManager"
       ]
     }
   }
