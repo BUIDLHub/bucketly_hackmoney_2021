@@ -2,11 +2,11 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/BaseAccess.sol": {
-      "lastModificationDate": 1625332163577,
-      "contentHash": "ad38b1f77f8c51ccc243630b7a6669f0",
+      "lastModificationDate": 1625341201482,
+      "contentHash": "8a4802e36b31489f3136e8a1fdcef8c5",
       "sourceName": "contracts/BaseAccess.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
             "enabled": true,
@@ -33,18 +33,18 @@
         "./LibStorage.sol"
       ],
       "versionPragmas": [
-        "^0.7.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "BaseAccess"
       ]
     },
     "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/LibAccess.sol": {
-      "lastModificationDate": 1625330200100,
-      "contentHash": "1449c760e2fb30c4476d4fb8ce10e055",
+      "lastModificationDate": 1625341148945,
+      "contentHash": "4ed6e0f234887c561b7f7bee3ff31007",
       "sourceName": "contracts/LibAccess.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
             "enabled": true,
@@ -69,18 +69,18 @@
         "./StorageTypes.sol"
       ],
       "versionPragmas": [
-        "^0.7.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "LibAccess"
       ]
     },
     "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/StorageTypes.sol": {
-      "lastModificationDate": 1625332092133,
-      "contentHash": "fd7c42bdee6b55cfb4e8bb1b25f9cccf",
+      "lastModificationDate": 1625341164256,
+      "contentHash": "a8e78acaeab4c7d579f8da0ce6c1c133",
       "sourceName": "contracts/StorageTypes.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
             "enabled": true,
@@ -103,18 +103,18 @@
       },
       "imports": [],
       "versionPragmas": [
-        "^0.7.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "StorageTypes"
       ]
     },
     "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/LibStorage.sol": {
-      "lastModificationDate": 1625332086750,
-      "contentHash": "73b6a2fe996d97112821e90853cbeeba",
+      "lastModificationDate": 1625341159341,
+      "contentHash": "6aef02329536001ebcfc8057f7b8ade5",
       "sourceName": "contracts/LibStorage.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
             "enabled": true,
@@ -139,18 +139,18 @@
         "./StorageTypes.sol"
       ],
       "versionPragmas": [
-        "^0.7.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "LibStorage"
       ]
     },
     "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/L2Bucket.sol": {
-      "lastModificationDate": 1625337644054,
-      "contentHash": "c479ae73bcb5390f6ec9269406ae27e1",
+      "lastModificationDate": 1625341229292,
+      "contentHash": "4c9de9952e4e48ed08b51c4101ce824e",
       "sourceName": "contracts/L2Bucket.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
             "enabled": true,
@@ -180,18 +180,18 @@
         "hardhat/console.sol"
       ],
       "versionPragmas": [
-        "^0.7.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "L2Bucket"
       ]
     },
     "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/LibMerkle.sol": {
-      "lastModificationDate": 1625340091553,
-      "contentHash": "243e2596a3cdd1a0587426e9cf3e6217",
+      "lastModificationDate": 1625341154097,
+      "contentHash": "43a0e7fb20af3b6298567eee64191cef",
       "sourceName": "contracts/LibMerkle.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
             "enabled": true,
@@ -217,18 +217,18 @@
         "hardhat/console.sol"
       ],
       "versionPragmas": [
-        "^0.7.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "LibMerkle"
       ]
     },
     "/Users/mdcoon/git/bucketly_hackmoney_2021/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1625331764521,
-      "contentHash": "e0a41531d159d3a32f84b7a3ecf9fabb",
+      "lastModificationDate": 1625341018820,
+      "contentHash": "0eac3e1a83ee62326ca007811285b274",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
             "enabled": true,
@@ -251,44 +251,10 @@
       },
       "imports": [],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "IERC20"
-      ]
-    },
-    "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/BucketFactory.sol": {
-      "lastModificationDate": 1625332066696,
-      "contentHash": "f8453c236720fa93548b529fd383033f",
-      "sourceName": "contracts/BucketFactory.sol",
-      "solcConfig": {
-        "version": "0.7.0",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.7.0"
-      ],
-      "artifacts": [
-        "BucketFactory"
       ]
     },
     "/Users/mdcoon/git/bucketly_hackmoney_2021/node_modules/hardhat/console.sol": {
@@ -296,7 +262,7 @@
       "contentHash": "cc4777addd464ea56fa35b1c45df0591",
       "sourceName": "hardhat/console.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
             "enabled": true,
@@ -323,6 +289,186 @@
       ],
       "artifacts": [
         "console"
+      ]
+    },
+    "/Users/mdcoon/git/bucketly_hackmoney_2021/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+      "lastModificationDate": 1625341018853,
+      "contentHash": "aa1be06992a99bb7393b26a6af3c4dfb",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20Metadata"
+      ]
+    },
+    "/Users/mdcoon/git/bucketly_hackmoney_2021/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "lastModificationDate": 1625341018821,
+      "contentHash": "acad756301f0fb200ecc66138e8cd5c5",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC20.sol",
+        "./extensions/IERC20Metadata.sol",
+        "../../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "/Users/mdcoon/git/bucketly_hackmoney_2021/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1625341018727,
+      "contentHash": "07f148e0d44b2ffc23b3ae6dd6e38cfb",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/DummyERC20.sol": {
+      "lastModificationDate": 1625341139764,
+      "contentHash": "b301bb7bf24877c5fb768546ae394bbf",
+      "sourceName": "contracts/DummyERC20.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "DummyERC20"
+      ]
+    },
+    "/Users/mdcoon/git/bucketly_hackmoney_2021/packages/relay/contracts/BucketERC20.sol": {
+      "lastModificationDate": 1625341135590,
+      "contentHash": "6351a6d18ac9cf4b3c1e9a3bf22d2131",
+      "sourceName": "contracts/BucketERC20.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "BucketERC20"
       ]
     }
   }

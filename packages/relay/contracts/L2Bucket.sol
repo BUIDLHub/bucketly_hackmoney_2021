@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 
 import "./LibMerkle.sol";
@@ -17,7 +17,7 @@ contract L2Bucket is BaseAccess {
     event MerkleRootSet(uint256 bucketID, address indexed token, bytes32 rootHash);
     event Redeemed(uint256 bucketID, address indexed token, address indexed recipient, uint256 amount);
 
-    constructor() public {
+    constructor() {
         initAccess();
     }
 

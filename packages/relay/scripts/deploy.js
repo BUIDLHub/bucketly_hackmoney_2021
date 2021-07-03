@@ -1,8 +1,8 @@
 async function main() {
-  const BucketFactory = await ethers.getContractFactory("BucketFactory");
-  const bucketFactory = await BucketFactory.deploy();
+  const BucketERC20 = await ethers.getContractFactory("BucketERC20");
+  const BucketERC20Instance = await BucketERC20.deploy();
 
-  console.log("BucketFactory deployed to:", bucketFactory.address);
+  console.log("BucketERC20 deployed to:", BucketERC20Instance.address);
 }
 
 main()

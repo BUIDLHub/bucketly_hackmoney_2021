@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 
 import "./LibAccess.sol";
@@ -17,7 +17,7 @@ abstract contract BaseAccess {
     bytes32 public constant RELAY_ROLE = 0x077a1d526a4ce8a773632ab13b4fbbf1fcc954c3dab26cd27ea0e2a6750da5d7;
     
     function _msgSender() internal view returns (address payable) {
-        return msg.sender;
+        return payable(msg.sender);
     }
 
     function hasRole(bytes32 role, address actor) public view returns (bool) {

@@ -8,24 +8,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const ethers_1 = require("ethers");
-const config_1 = __importDefault(require("../config/config"));
-const web3Functions_1 = __importDefault(require("../web3/web3Functions"));
-const BucketFactory_json_1 = __importDefault(require("../contracts/contracts/BucketFactory.sol/BucketFactory.json"));
+//import bucketFactoryInterface from '../contracts/contracts/BucketFactory.sol/BucketFactory.json'
 const startL1BucketFactoryMonitor = () => __awaiter(void 0, void 0, void 0, function* () {
+    /*
     console.log("L1BucketFactoryMonitor started");
-    const bucketFactoryAddress = config_1.default.web3.bucketFactory;
-    const bucketFactoryAbi = BucketFactory_json_1.default.abi;
-    const provider = web3Functions_1.default.getL1Provider();
-    const bucketFactoryContract = new ethers_1.ethers.Contract(bucketFactoryAddress, bucketFactoryAbi, provider);
-    bucketFactoryContract.on("BucketCreated", (token, triggerAmount, expirationDate) => {
-        console.log(`New bucket created ${token}, trigger amount: ${triggerAmount} and expiration date: ${expirationDate}`);
-        //save into db
+    const bucketFactoryAddress = config.web3.bucketFactory;
+    const bucketFactoryAbi = bucketFactoryInterface.abi;
+    const provider = web3Functions.getL1Provider();
+    const bucketFactoryContract = new ethers.Contract(
+      bucketFactoryAddress,
+      bucketFactoryAbi,
+      provider
+    );
+    bucketFactoryContract.on("BucketCreated", (id: number, token: string, triggerAmount: number, expirationDate: number) => {
+      console.log(`New bucket created ${ token }, trigger amount: ${ triggerAmount } and expiration date: ${ expirationDate}`);
+      //save into db
+      dbFunctions.insertNewBucket(id, token, expirationDate, 0, triggerAmount);
     });
+    */
 });
 exports.default = {
     startL1BucketFactoryMonitor
