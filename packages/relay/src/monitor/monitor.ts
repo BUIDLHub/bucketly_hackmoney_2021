@@ -6,6 +6,7 @@ import bucketERC20 from '../contracts/contracts/BucketERC20.sol/BucketERC20.json
 
 const startL1BucketFactoryMonitor = async () => {
 
+  /*
   console.log("L1BucketFactoryMonitor started");
   const bucketFactoryAddress = config.web3.bucketFactory;
   const bucketFactoryAbi = bucketERC20.abi;
@@ -20,6 +21,7 @@ const startL1BucketFactoryMonitor = async () => {
     //save into db
     dbFunctions.insertNewBucket(id, token, expirationDate, 0, triggerAmount);
   });
+  */
 }
 
 export default {
