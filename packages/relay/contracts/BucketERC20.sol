@@ -43,6 +43,7 @@ contract BucketERC20 {
     require(tokenContract.balanceOf(msg.sender) >= depositAmount, "Insufficient balance");
     require(tokenContract.allowance(msg.sender, address(this)) >= depositAmount, "Insufficient allowance");
     require(tokenContract.transferFrom(msg.sender, address(this), depositAmount), "Could not transfer tokens from depositor");
+    deposits[activeBucketId][msg.sender] = depositAmount;
     emit Deposit(activeBucketId, depositAmount, msg.sender);
   }
 

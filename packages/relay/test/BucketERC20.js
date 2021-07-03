@@ -1,18 +1,23 @@
 const { expect } = require("chai");
 
-describe("BucketERC20 contract", () => {
-  const erc20contract = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+describe("Test BucketERC20 contract deployment and create bucket function", () => {
   let BucketERC20Instance;
-
+  let DummyERC20Instance;
+  
   beforeEach(async () => {
-    const BucketERC20 = await ethers.getContractFactory("BucketERC20");
+    // Deploy dummy ERC20 contract 
+    const DummyERC20 = await ethers.getContractFactory("DummyERC20");
+    DummyERC20Instance = await DummyERC20.deploy("1000000");
+
+    // Deploy Bucket contract
     // Reminder: constructor(address _erc20Address, string memory _tokenName, uint _triggerAmount, uint _minimumReserve, uint256 _expirationTime)
-    BucketERC20Instance = await BucketERC20.deploy(erc20contract, "DAI", "1000", "100", "300");
+    const BucketERC20 = await ethers.getContractFactory("BucketERC20");
+    BucketERC20Instance = await BucketERC20.deploy(DummyERC20Instance.address, "DMY", "1000", "100", "300");
   })
 
   it("Check if contract is deployed properly by calling public value", async () => {
     const erc20Address = await BucketERC20Instance.erc20Address.call();
-    expect(await erc20Address).to.equal(erc20contract);
+    expect(await erc20Address).to.equal(DummyERC20Instance.address);
   });
 
   it("Should emit an event when executing createBucket function", async () => {
@@ -39,11 +44,62 @@ describe("BucketERC20 contract", () => {
   });
 
   it("Should set bucket expirationDate properly", async () => {
-    const expirationTime = await BucketERC20Instance.expirationTime.call();
     const currentExpirationDate = await BucketERC20Instance.expirationDate.call();
     
     await BucketERC20Instance.createBucket(10000);
     const newExpirationDate = await BucketERC20Instance.expirationDate.call();
     expect(parseInt(newExpirationDate)).to.greaterThan(parseInt(currentExpirationDate));
+  });
+
+  it("Should set bucket expirationDate properly", async () => {
+    const currentExpirationDate = await BucketERC20Instance.expirationDate.call();
+    
+    await BucketERC20Instance.createBucket(10000);
+    const newExpirationDate = await BucketERC20Instance.expirationDate.call();
+    expect(parseInt(newExpirationDate)).to.greaterThan(parseInt(currentExpirationDate));
+  });
+  
+  it("Should deposit erc20 properly", async () => {
+    // Transfer 1000 tokens to each depositor
+    const depositAmount = 100;
+    const [owner, depositor1, depositor2] = await ethers.getSigners();
+    await DummyERC20Instance.transfer(depositor1.address, "1000");
+    await DummyERC20Instance.transfer(depositor2.address, "1000");
+
+    await DummyERC20Instance.connect(depositor1).approve(BucketERC20Instance.address, depositAmount)
+    await BucketERC20Instance.connect(depositor1).deposit(depositAmount);
+    const bucketBalance = await DummyERC20Instance.balanceOf(BucketERC20Instance.address);
+    expect(parseInt(bucketBalance)).to.equal(100);
+  });
+
+  it("Should emit Deposit event properly", async () => {
+    // Transfer 1000 tokens to each depositor
+    const depositAmount = 100;
+    const [owner, depositor1] = await ethers.getSigners();
+    await DummyERC20Instance.transfer(depositor1.address, "1000");
+
+    await DummyERC20Instance.connect(depositor1).approve(BucketERC20Instance.address, depositAmount)
+    await expect(BucketERC20Instance.connect(depositor1).deposit(depositAmount))
+    .to.emit(BucketERC20Instance, 'Deposit');
+  });
+
+  it("Should revert if depositor balance is insufficient", async () => {
+    // Transfer 1000 tokens to each depositor
+    const depositAmount = 100;
+    const [owner, depositor1] = await ethers.getSigners();
+    await DummyERC20Instance.transfer(depositor1.address, "10");
+
+    await DummyERC20Instance.connect(depositor1).approve(BucketERC20Instance.address, depositAmount);
+    await expect(BucketERC20Instance.connect(depositor1).deposit(depositAmount)).to.be.revertedWith("Insufficient balance");
+  });
+
+  it("Should revert if depositor allowance is insufficient", async () => {
+    // Transfer 1000 tokens to each depositor
+    const depositAmount = 100;
+    const [owner, depositor1] = await ethers.getSigners();
+    await DummyERC20Instance.transfer(depositor1.address, "100");
+
+    await DummyERC20Instance.connect(depositor1).approve(BucketERC20Instance.address, "10");
+    await expect(BucketERC20Instance.connect(depositor1).deposit(depositAmount)).to.be.revertedWith("Insufficient allowance");
   });
 });

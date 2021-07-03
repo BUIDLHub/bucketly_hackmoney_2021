@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\BucketERC20.sol": {
-      "lastModificationDate": 1625332451272,
-      "contentHash": "66fa0f9a3f72f42bf86624bcdfd6677f",
+      "lastModificationDate": 1625333324352,
+      "contentHash": "bc983f099405d7ca2ebfddf56cb12c83",
       "sourceName": "contracts/BucketERC20.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -177,6 +177,42 @@
       ],
       "artifacts": [
         "Context"
+      ]
+    },
+    "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\DummyERC20.sol": {
+      "lastModificationDate": 1625334031079,
+      "contentHash": "4f7e9703847cc4539d2268070ca7cc21",
+      "sourceName": "contracts/DummyERC20.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "DummyERC20"
       ]
     }
   }
