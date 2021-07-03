@@ -3,14 +3,18 @@ pragma solidity ^0.8.4;
 
 contract BucketFactory {
   uint public testValue;
+  uint public bucketIds;
 
-  event BucketCreated(string indexed token, uint indexed triggerAmount, uint indexed expirationDate);
+  event BucketCreated(uint indexed id, string token, uint indexed triggerAmount, uint indexed expirationDate);
   
   constructor() {
     testValue = 42;
+    bucketIds = 0;
   }
 
   function createBucket(string memory tokenName, uint triggerAmount) public {
-    emit BucketCreated(tokenName, triggerAmount, block.timestamp);
+    uint id = bucketIds;
+    bucketIds = bucketIds + 1;
+    emit BucketCreated(id, tokenName, triggerAmount, block.timestamp);
   }
 }

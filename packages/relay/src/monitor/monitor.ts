@@ -1,6 +1,7 @@
 import { ethers } from 'ethers';
 import config from '../config/config';
-import web3Functions from '../web3/web3Functions';
+import web3Functions from '../functions/web3Functions';
+import dbFunctions from '../functions/dbFunctions';
 import bucketFactoryInterface from '../contracts/contracts/BucketFactory.sol/BucketFactory.json'
 
 const startL1BucketFactoryMonitor = async () => {
@@ -14,9 +15,10 @@ const startL1BucketFactoryMonitor = async () => {
     bucketFactoryAbi,
     provider
   );
-  bucketFactoryContract.on("BucketCreated", (token, triggerAmount, expirationDate) => {
+  bucketFactoryContract.on("BucketCreated", (id: number, token: string, triggerAmount: number, expirationDate: number) => {
     console.log(`New bucket created ${ token }, trigger amount: ${ triggerAmount } and expiration date: ${ expirationDate}`);
     //save into db
+    dbFunctions.insertNewBucket(id, token, expirationDate, 0, triggerAmount);
   });
 }
 
