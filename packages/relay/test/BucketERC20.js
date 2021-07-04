@@ -5,6 +5,7 @@ const ERC20ABI = require('./abi/ERC20ABI.json');
 describe("Test BucketERC20 contract deployment and create bucket function", () => {
   let BucketERC20Instance;
   let DummyERC20Instance;
+  let AccInstance;
   let goerliTestERC20 = "0x3f152B63Ec5CA5831061B2DccFb29a874C317502";
   const depositManagerContract = config.default.web3.DepositManager;
   const bucketL2Address = config.default.web3.bucketL2;
@@ -14,8 +15,15 @@ describe("Test BucketERC20 contract deployment and create bucket function", () =
     const DummyERC20 = await ethers.getContractFactory("DummyERC20");
     DummyERC20Instance = await DummyERC20.deploy("1000000");
 
+    let ACC = await ethers.getContractFactory("LibAccess");
+    AccInstance = await ACC.deploy();
+
     // Deploy Bucket contract
-    const BucketERC20 = await ethers.getContractFactory("BucketERC20");
+    const BucketERC20 = await ethers.getContractFactory("BucketERC20", {
+      libraries: {
+          LibAccess: AccInstance.address,
+      }
+    });
     BucketERC20Instance = await BucketERC20.deploy(depositManagerContract, bucketL2Address);
   })
 
