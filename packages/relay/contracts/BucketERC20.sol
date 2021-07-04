@@ -13,42 +13,61 @@ interface IDepositManager {
 }
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "hardhat/console.sol";
 
 contract BucketERC20 {
-  uint public bucketIdCount;
-  uint public activeBucketId;
-  uint256 public expirationDate;
   address public depositManagerContract;
   address public bucketL2Address;
 
   struct BucketInfo {
     uint idCounter;
     uint expirationTime;
+    uint expirationDate;
     uint thresholdAmount;
+    uint totalAmount;
+    uint fee;
   }
   
-  mapping (uint => mapping (address => mapping (address => uint))) deposits; // mapping keys: bucketId => tokenAddress => depositorAddress => balance
-  mapping(address => BucketInfo) bucketInfo; // mapping keys: tokenAddress => BucketInfo
+  // Previous: mapping (uint => mapping (address => mapping (address => uint))) deposits; // mapping keys: bucketId => tokenAddress => depositorAddress => balance
+  mapping (address => mapping (uint => mapping (address => uint))) public deposits; // mapping keys: tokenAddress => bucketId => depositorAddress => balance
+  mapping (address => BucketInfo) public bucketInfo; // mapping keys: tokenAddress => BucketInfo
 
   event BucketCreated(uint indexed id, uint indexed triggerAmount, uint indexed expirationDate);
   event Deposit(uint indexed bucketId, uint indexed amount, address indexed depositor);
-  event Withdraw(uint indexed bucketId);
-  event TransferToPoly(uint indexed bucketId, uint indexed totalAmount);
+  event Withdraw(uint indexed bucketId, uint indexed amount, address indexed withdrawer);
+  event TransferToPoly(address indexed tokenAddress, uint indexed bucketId, uint indexed totalAmount);
   event InsufficientReserve(uint indexed bucketId);
   
   constructor(address _depositManagerContract, address _bucketL2Address) {
     depositManagerContract = _depositManagerContract;
     bucketL2Address = _bucketL2Address;
-    bucketIdCount = 0;
   }
 
-  function createBucket(address tokenAddress, uint _expirationTime, uint _thresholdAmount) public {
-    bucketInfo[tokenAddress].idCounter += 1;
-    bucketInfo[tokenAddress].expirationTime += _expirationTime;
-    bucketInfo[tokenAddress].thresholdAmount += _thresholdAmount;
+  function createBucket(address _tokenAddress, uint _expirationTime, uint _thresholdAmount, uint _fee) public {
+    bucketInfo[_tokenAddress].idCounter += 1;
+    bucketInfo[_tokenAddress].expirationTime += _expirationTime;
+    bucketInfo[_tokenAddress].expirationDate = block.timestamp + _expirationTime;
+    bucketInfo[_tokenAddress].thresholdAmount += _thresholdAmount;
+    bucketInfo[_tokenAddress].fee = _fee;
+    bucketInfo[_tokenAddress].totalAmount = 0;
 
-    expirationDate = block.timestamp + _expirationTime;
-    emit BucketCreated(bucketInfo[tokenAddress].idCounter, _thresholdAmount, expirationDate);
+    emit BucketCreated(bucketInfo[_tokenAddress].idCounter, _thresholdAmount, bucketInfo[_tokenAddress].expirationDate);
+  }
+
+  function setExpirationTime(address _tokenAddress, uint _expirationTime) public {
+    bucketInfo[_tokenAddress].expirationTime = _expirationTime;
+  }
+
+  function setExpirationDate(address _tokenAddress, uint _expirationDate) public {
+    bucketInfo[_tokenAddress].expirationDate = _expirationDate;
+  }
+
+  function setThresholdAmount(address _tokenAddress, uint _thresholdAmount) public {
+    bucketInfo[_tokenAddress].thresholdAmount = _thresholdAmount;
+  }
+
+  function setFee(address _tokenAddress, uint _fee) public {
+    bucketInfo[_tokenAddress].fee = _fee;
   }
 
   function deposit(address _tokenAddress, uint depositAmount) public {
@@ -57,19 +76,44 @@ contract BucketERC20 {
     require(tokenContract.allowance(msg.sender, address(this)) >= depositAmount, "Insufficient allowance");
     
     require(tokenContract.transferFrom(msg.sender, address(this), depositAmount), "Could not transfer tokens from depositor");
-    deposits[activeBucketId][_tokenAddress][msg.sender] = depositAmount;
+    bucketInfo[_tokenAddress].totalAmount += depositAmount;
+    uint activeBucketId = bucketInfo[_tokenAddress].idCounter;
+    deposits[_tokenAddress][activeBucketId][msg.sender] = depositAmount;
     emit Deposit(activeBucketId, depositAmount, msg.sender);
   }
 
-  function makeTransfer(address _tokenAddress, uint _amount) public {
+  function refund(address _tokenAddress) public {
+    uint currentBucketId = bucketInfo[_tokenAddress].idCounter;
+    uint userDepositBalance =  deposits[_tokenAddress][currentBucketId][msg.sender];
+    require(userDepositBalance > 0, "Msg.sender deposit balance is zero");
     ERC20 tokenContract = ERC20(_tokenAddress);
-    require(tokenContract.balanceOf(address(this)) >= _amount, "Insufficient balance");
+    require(tokenContract.balanceOf(address(this)) >= userDepositBalance, "Insufficient balance");
     
-    require(tokenContract.approve(depositManagerContract, _amount), "Could not approve depositManagerContract");
-    IDepositManager(depositManagerContract).depositERC20(_tokenAddress, _amount);
-    createBucket(_tokenAddress, bucketInfo[_tokenAddress].expirationTime, bucketInfo[_tokenAddress].thresholdAmount);
-    emit TransferToPoly(activeBucketId, _amount);
+    bucketInfo[_tokenAddress].totalAmount -= userDepositBalance;
+    deposits[_tokenAddress][currentBucketId][msg.sender] = 0;
+    require(tokenContract.transfer(msg.sender, userDepositBalance), "Could not transfer tokens");
+    emit Withdraw(currentBucketId, userDepositBalance, msg.sender);
   }
-  
-  function refund() public {}
+
+  function makeTransfer(address _tokenAddress, uint _amount) public {
+    if (block.timestamp < bucketInfo[_tokenAddress].expirationDate) {
+      require(bucketInfo[_tokenAddress].totalAmount >= bucketInfo[_tokenAddress].thresholdAmount, "Threshold amount not reached");  
+    }
+    uint fee = bucketInfo[_tokenAddress].fee;
+    uint transferAmount = _amount - (_amount * fee / 100);
+    ERC20 tokenContract = ERC20(_tokenAddress);
+    require(tokenContract.balanceOf(address(this)) >= transferAmount, "Insufficient balance");
+    
+    require(tokenContract.approve(depositManagerContract, transferAmount), "Could not approve depositManagerContract");
+    IDepositManager(depositManagerContract).depositERC20(_tokenAddress, transferAmount);
+    
+    //delete balances
+    // uint currentBucketId = bucketInfo[_tokenAddress].idCounter;
+    // delete deposits[_tokenAddress][currentBucketId];
+    
+    //+= 1 bucketID
+    uint transferredBucketId = bucketInfo[_tokenAddress].idCounter;
+    bucketInfo[_tokenAddress].idCounter += 1;
+    emit TransferToPoly(_tokenAddress, transferredBucketId, transferAmount);
+  }
 }

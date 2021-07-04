@@ -35,7 +35,8 @@ module.exports = {
       allowUnlimitedContractSize: true,
       timeout: 1800000,
       forking: {
-        url: `https://mainnet.infura.io/v3/${process.env.INFURA_ID}`
+        // url: `https://mainnet.infura.io/v3/${process.env.INFURA_ID}`
+        url: `https://goerli.infura.io/v3/${process.env.INFURA_ID}`
       }
     }
   }
