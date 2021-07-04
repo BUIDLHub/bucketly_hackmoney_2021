@@ -3,8 +3,6 @@
 .card-styles {
     background: linear-gradient(to bottom, $card-gradient-light, $card-gradient-dark);
     border-radius: 5px;
-    min-width: 605px !important;
-    min-height: 550px !important;
 }
 
 .card-shadow {
@@ -41,3 +39,4 @@
 .field-input {
     background: $inputfieldcontainer;
 }
+

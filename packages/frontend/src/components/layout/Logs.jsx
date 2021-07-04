@@ -13,7 +13,7 @@ import Button from "../elements/Buttons/SubmitButton";
 
 const Logs = () => {
 return (
- <Card>
+ <Card main>
      <Row className={cn(full, 'pt-3', nMP, aL)}>
      <p className={cn('text-white', 'regular', 'roboto', 'text-size-20', 'text-uppercase')}>Your Logs</p>
      </Row>

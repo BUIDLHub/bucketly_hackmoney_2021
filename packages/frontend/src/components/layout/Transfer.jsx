@@ -15,7 +15,7 @@ import Button from "../elements/Buttons/SubmitButton";
 
 const Transfer = () => {
 return (
- <Card>
+ <Card main>
      <Row className={cn(full, 'pt-3', nMP, aL)}>
      <p className={cn('text-white', 'regular', 'roboto', 'text-size-20', 'text-uppercase')}>Transfer This</p>
      </Row>

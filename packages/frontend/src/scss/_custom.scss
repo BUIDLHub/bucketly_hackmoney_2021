@@ -126,3 +126,30 @@ min-height: 90vh !important;
 .text-light {
   color: $light !important;
 }
+
+
+////////////////////////////
+// Cards
+////////////////////////////
+
+.main-card {
+  min-height: 550px !important;
+  max-height: 550px !important;
+  min-width: 605px !important;
+  max-width: 605px !important;
+}
+
+.doughnut-card {
+  min-height: 340px !important;
+  max-height: 340px !important;
+  min-width: 350px !important;
+  max-width: 350px !important;
+
+}
+
+.progress-card {
+  min-height: 210px !important;
+  max-height: 210px !important;
+  min-width: 350px !important;
+  max-width: 350px !important;
+}
