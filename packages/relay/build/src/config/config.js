@@ -4,8 +4,7 @@ const SERVER = {
     port: process.env.PORT || 8080,
 };
 const WEB3 = {
-    bucketFactory: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
-    bucketL1: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    bucketL1: "0xCdb63c58b907e76872474A0597C5252eDC97c883",
     bucketL2: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
     testERC20L1: "0x3f152B63Ec5CA5831061B2DccFb29a874C317502",
     testERC20L2: "0x2d7882beDcbfDDce29Ba99965dd3cdF7fcB10A1e",

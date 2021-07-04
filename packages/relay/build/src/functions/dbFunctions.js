@@ -11,12 +11,12 @@ const initDatabase = () => {
             throw err;
         console.log('Database started on ' + config_1.default.db.dbname);
     });
-    db.run(`CREATE TABLE IF NOT EXISTS ${config_1.default.db.bucketsTableName} (id INT PRIMARY KEY, token VARCHAR(10), expirationDate INT, totalAmount INT, triggerAmount INT)`, err => {
+    db.run(`CREATE TABLE IF NOT EXISTS ${config_1.default.db.bucketsTableName} (id INT PRIMARY KEY, tokenAddress VARCHAR(42), bucketID INT, expirationDate INT, totalAmount INT, triggerAmount INT)`, err => {
         if (err)
             throw err;
         console.log(`Table ${config_1.default.db.bucketsTableName} created`);
     });
-    db.run(`CREATE TABLE IF NOT EXISTS ${config_1.default.db.depositsTableName} (id INT PRIMARY KEY, bucketId INT, depositorAddress VARCHAR42, depositAmount INT)`, err => {
+    db.run(`CREATE TABLE IF NOT EXISTS ${config_1.default.db.depositsTableName} (id INT PRIMARY KEY, tokenAddress VARCHAR(42), bucketId INT, depositorAddress VARCHAR(42), depositAmount INT)`, err => {
         if (err)
             throw err;
         console.log(`Table ${config_1.default.db.depositsTableName} created`);
@@ -27,16 +27,29 @@ const initDatabase = () => {
         console.log('Database closed');
     });
 };
-const insertNewBucket = (id, token, expirationDate, totalAmount, triggerAmount) => {
+const insertNewBucket = (tokenAddress, bucketId, expirationDate, triggerAmount) => {
     let db = new sqlite3_1.default.Database(config_1.default.db.dbname, err => {
         if (err)
             throw err;
         console.log('Database started on ' + config_1.default.db.dbname);
     });
-    db.run(`INSERT INTO ${config_1.default.db.bucketsTableName} (id, token, expirationDate, totalAmount, triggerAmount) VALUES (1, 'DAI', 1625243279, 0, 10000) `, err => {
+    db.run(`INSERT INTO ${config_1.default.db.bucketsTableName} (tokenAddress, bucketId, expirationDate, totalAmount, triggerAmount) VALUES (${tokenAddress}, ${bucketId}, ${expirationDate}, 0, ${triggerAmount}) `, err => {
         if (err)
             throw err;
         console.log('New bucket inserted into ' + config_1.default.db.bucketsTableName);
+    });
+};
+// "Deposit", (tokenAddress: string, bucketId: number, amount: number, depositor: string)
+const insertNewDeposit = (tokenAddress, bucketId, amount, depositor) => {
+    let db = new sqlite3_1.default.Database(config_1.default.db.dbname, err => {
+        if (err)
+            throw err;
+        console.log('Database started on ' + config_1.default.db.dbname);
+    });
+    db.run(`INSERT INTO ${config_1.default.db.depositsTableName} (tokenAddress, bucketId, amount, depositor) VALUES (${tokenAddress}, ${bucketId}, ${amount}, ${depositor}) `, err => {
+        if (err)
+            throw err;
+        console.log('New bucket inserted into ' + config_1.default.db.depositsTableName);
     });
 };
 const seeDb = () => {
@@ -56,5 +69,6 @@ const seeDb = () => {
 exports.default = {
     initDatabase,
     insertNewBucket,
+    insertNewDeposit,
     seeDb
 };

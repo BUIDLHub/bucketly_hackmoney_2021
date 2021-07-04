@@ -8,5 +8,5 @@ const dbFunctions_1 = __importDefault(require("./functions/dbFunctions"));
 const monitor_1 = __importDefault(require("./monitor/monitor"));
 const app = express_1.default();
 dbFunctions_1.default.initDatabase();
-monitor_1.default.startL1BucketFactoryMonitor();
+monitor_1.default.startL1BucketMonitor();
 exports.default = app;

@@ -4,6 +4,6 @@ import monitor from './monitor/monitor';
 
 const app = express();
 dbFunctions.initDatabase();
-monitor.startL1BucketFactoryMonitor();
+monitor.startL1BucketMonitor();
 
 export default app;

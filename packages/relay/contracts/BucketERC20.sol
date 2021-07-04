@@ -26,8 +26,8 @@ contract BucketERC20 is BaseAccess {
   // Mapping keys: tokenAddress => BucketInfo
   mapping (address => BucketInfo) public bucketInfo;
 
-  event BucketCreated(uint indexed id, uint indexed triggerAmount, uint indexed expirationDate);
-  event Deposit(uint indexed bucketId, uint indexed amount, address indexed depositor);
+  event BucketCreated(address tokenAddress, uint indexed bucketId, uint indexed triggerAmount, uint indexed expirationDate);
+  event Deposit(address tokenAddress, uint indexed bucketId, uint indexed amount, address indexed depositor);
   event Withdraw(uint indexed bucketId, uint indexed amount, address indexed withdrawer);
   event TransferToPoly(address indexed tokenAddress, uint indexed bucketId, uint indexed totalAmount);
   event InsufficientReserve(uint indexed bucketId);
@@ -46,7 +46,7 @@ contract BucketERC20 is BaseAccess {
     bucketInfo[_tokenAddress].fee = _fee;
     bucketInfo[_tokenAddress].totalAmount = 0;
 
-    emit BucketCreated(bucketInfo[_tokenAddress].idCounter, _thresholdAmount, bucketInfo[_tokenAddress].expirationDate);
+    emit BucketCreated(_tokenAddress, bucketInfo[_tokenAddress].idCounter, _thresholdAmount, bucketInfo[_tokenAddress].expirationDate);
   }
 
   function setExpirationTime(address _tokenAddress, uint _expirationTime) public onlyAdmin {
@@ -74,7 +74,7 @@ contract BucketERC20 is BaseAccess {
     bucketInfo[_tokenAddress].totalAmount += depositAmount;
     uint activeBucketId = bucketInfo[_tokenAddress].idCounter;
     deposits[_tokenAddress][activeBucketId][msg.sender] = depositAmount;
-    emit Deposit(activeBucketId, depositAmount, msg.sender);
+    emit Deposit(_tokenAddress, activeBucketId, depositAmount, msg.sender);
   }
 
   function refund(address _tokenAddress) public {

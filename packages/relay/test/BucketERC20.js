@@ -15,13 +15,13 @@ describe("Test BucketERC20 contract deployment and create bucket function", () =
     const DummyERC20 = await ethers.getContractFactory("DummyERC20");
     DummyERC20Instance = await DummyERC20.deploy("1000000");
 
-    let ACC = await ethers.getContractFactory("LibAccess");
-    AccInstance = await ACC.deploy();
+    let LibAccess = await ethers.getContractFactory("LibAccess");
+    LibAccessInstance = await LibAccess.deploy();
 
     // Deploy Bucket contract
     const BucketERC20 = await ethers.getContractFactory("BucketERC20", {
       libraries: {
-          LibAccess: AccInstance.address,
+          LibAccess: LibAccessInstance.address,
       }
     });
     BucketERC20Instance = await BucketERC20.deploy(depositManagerContract, bucketL2Address);

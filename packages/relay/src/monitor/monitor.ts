@@ -4,26 +4,47 @@ import web3Functions from '../functions/web3Functions';
 import dbFunctions from '../functions/dbFunctions';
 import bucketERC20 from '../contracts/contracts/BucketERC20.sol/BucketERC20.json'
 
-const startL1BucketFactoryMonitor = async () => {
-
-  /*
-  console.log("L1BucketFactoryMonitor started");
-  const bucketFactoryAddress = config.web3.bucketFactory;
-  const bucketFactoryAbi = bucketERC20.abi;
+const bucketCreationMonitor = async () => {
+  console.log("L1 bucketCreationMonitor started");
+  const bucketL1Address = config.web3.bucketL1;
+  const bucketL1Abi = bucketERC20.abi;
   const provider = web3Functions.getL1Provider();
   const bucketFactoryContract = new ethers.Contract(
-    bucketFactoryAddress,
-    bucketFactoryAbi,
+    bucketL1Address,
+    bucketL1Abi,
     provider
   );
-  bucketFactoryContract.on("BucketCreated", (id: number, token: string, triggerAmount: number, expirationDate: number) => {
-    console.log(`New bucket created ${ token }, trigger amount: ${ triggerAmount } and expiration date: ${ expirationDate}`);
+  // event BucketCreated(address tokenAddress, uint indexed id, uint indexed triggerAmount, uint indexed expirationDate);
+  bucketFactoryContract.on("BucketCreated", (tokenAddress: string, bucketId: number, triggerAmount: number, expirationDate: number) => {
+    console.log(`New bucket created ${ tokenAddress }, bucket id: ${ bucketId }, trigger amount: ${ triggerAmount } and expiration date: ${ expirationDate}`);
     //save into db
-    dbFunctions.insertNewBucket(id, token, expirationDate, 0, triggerAmount);
+    dbFunctions.insertNewBucket(tokenAddress, bucketId, expirationDate, triggerAmount);
   });
-  */
+}
+
+const depositMonitor = async () => {
+  console.log("L1 depositMonitor started");
+  const bucketL1Address = config.web3.bucketL1;
+  const bucketL1Abi = bucketERC20.abi;
+  const provider = web3Functions.getL1Provider();
+  const bucketFactoryContract = new ethers.Contract(
+    bucketL1Address,
+    bucketL1Abi,
+    provider
+  );
+  // event Deposit(address tokenAddress, uint indexed bucketId, uint indexed amount, address indexed depositor);
+  bucketFactoryContract.on("Deposit", (tokenAddress: string, bucketId: number, amount: number, depositor: string) => {
+    console.log(`New deposit ${ tokenAddress }, bucket id: ${ bucketId }, amount: ${ amount } and depositor: ${ depositor }`);
+    //save into db
+    dbFunctions.insertNewDeposit(tokenAddress, bucketId, amount, depositor);
+  });
+}
+
+const startL1BucketMonitor = async () => {
+  bucketCreationMonitor();
+  depositMonitor();
 }
 
 export default {
-  startL1BucketFactoryMonitor
+  startL1BucketMonitor
 }
