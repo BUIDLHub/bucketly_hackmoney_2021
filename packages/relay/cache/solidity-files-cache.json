@@ -436,8 +436,8 @@
       ]
     },
     "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\BucketERC20.sol": {
-      "lastModificationDate": 1625413163696,
-      "contentHash": "e1ca8108cebf0e5e0e6436ce8efd7aff",
+      "lastModificationDate": 1625423973116,
+      "contentHash": "b8fb1f99399f2e612ff5b16ef6834cdb",
       "sourceName": "contracts/BucketERC20.sol",
       "solcConfig": {
         "version": "0.8.0",
@@ -463,7 +463,7 @@
       },
       "imports": [
         "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "hardhat/console.sol"
+        "./BaseAccess.sol"
       ],
       "versionPragmas": [
         "^0.8.0"

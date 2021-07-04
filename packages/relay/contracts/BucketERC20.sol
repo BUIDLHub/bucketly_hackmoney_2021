@@ -2,20 +2,13 @@
 pragma solidity ^0.8.0;
 
 interface IDepositManager {
-    function depositEther() external payable;
-    function transferAssets(
-        address _token,
-        address _user,
-        uint256 _amountOrNFTId
-    ) external;
-    function depositERC20(address _token, uint256 _amount) external;
-    function depositERC721(address _token, uint256 _tokenId) external;
+  function depositERC20ForUser(address _token, address _user, uint256 _amount) external;
 }
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "hardhat/console.sol";
+import "./BaseAccess.sol";
 
-contract BucketERC20 {
+contract BucketERC20 is BaseAccess {
   address public depositManagerContract;
   address public bucketL2Address;
 
@@ -28,9 +21,10 @@ contract BucketERC20 {
     uint fee;
   }
   
-  // Previous: mapping (uint => mapping (address => mapping (address => uint))) deposits; // mapping keys: bucketId => tokenAddress => depositorAddress => balance
-  mapping (address => mapping (uint => mapping (address => uint))) public deposits; // mapping keys: tokenAddress => bucketId => depositorAddress => balance
-  mapping (address => BucketInfo) public bucketInfo; // mapping keys: tokenAddress => BucketInfo
+  // Mapping keys: tokenAddress => bucketId => depositorAddress => balance
+  mapping (address => mapping (uint => mapping (address => uint))) public deposits;
+  // Mapping keys: tokenAddress => BucketInfo
+  mapping (address => BucketInfo) public bucketInfo;
 
   event BucketCreated(uint indexed id, uint indexed triggerAmount, uint indexed expirationDate);
   event Deposit(uint indexed bucketId, uint indexed amount, address indexed depositor);
@@ -41,11 +35,10 @@ contract BucketERC20 {
   constructor(address _depositManagerContract, address _bucketL2Address) {
     depositManagerContract = _depositManagerContract;
     bucketL2Address = _bucketL2Address;
+    initAccess();
   }
 
-  //WARNING: this must be locked down to admin only (see BaseAccess contract to extend and get that working)
-  // or anyone can call to create a new bucket at any time!
-  function createBucket(address _tokenAddress, uint _expirationTime, uint _thresholdAmount, uint _fee) public {
+  function createBucket(address _tokenAddress, uint _expirationTime, uint _thresholdAmount, uint _fee) public onlyAdmin {
     bucketInfo[_tokenAddress].idCounter += 1;
     bucketInfo[_tokenAddress].expirationTime += _expirationTime;
     bucketInfo[_tokenAddress].expirationDate = block.timestamp + _expirationTime;
@@ -56,23 +49,21 @@ contract BucketERC20 {
     emit BucketCreated(bucketInfo[_tokenAddress].idCounter, _thresholdAmount, bucketInfo[_tokenAddress].expirationDate);
   }
 
-  //WARNING: all of these setters need to be locked down to admin only
-  function setExpirationTime(address _tokenAddress, uint _expirationTime) public {
+  function setExpirationTime(address _tokenAddress, uint _expirationTime) public onlyAdmin {
     bucketInfo[_tokenAddress].expirationTime = _expirationTime;
   }
 
-  function setExpirationDate(address _tokenAddress, uint _expirationDate) public {
+  function setExpirationDate(address _tokenAddress, uint _expirationDate) public onlyAdmin {
     bucketInfo[_tokenAddress].expirationDate = _expirationDate;
   }
 
-  function setThresholdAmount(address _tokenAddress, uint _thresholdAmount) public {
+  function setThresholdAmount(address _tokenAddress, uint _thresholdAmount) public onlyAdmin {
     bucketInfo[_tokenAddress].thresholdAmount = _thresholdAmount;
   }
 
-  function setFee(address _tokenAddress, uint _fee) public {
+  function setFee(address _tokenAddress, uint _fee) public onlyAdmin {
     bucketInfo[_tokenAddress].fee = _fee;
   }
-
 
   function deposit(address _tokenAddress, uint depositAmount) public {
     ERC20 tokenContract = ERC20(_tokenAddress);
@@ -110,19 +101,17 @@ contract BucketERC20 {
     
     require(tokenContract.approve(depositManagerContract, transferAmount), "Could not approve depositManagerContract");
     
-    //WARNING: this is  incorrect. It needs to deposit on behalf of the L2 contract "user"
-    IDepositManager(depositManagerContract).depositERC20(_tokenAddress, transferAmount);
-    
-    //delete balances
-    // uint currentBucketId = bucketInfo[_tokenAddress].idCounter;
-    // delete deposits[_tokenAddress][currentBucketId];
+    IDepositManager(depositManagerContract).depositERC20ForUser(_tokenAddress, bucketL2Address, transferAmount);
     
     //+= 1 bucketID
     uint transferredBucketId = bucketInfo[_tokenAddress].idCounter;
     bucketInfo[_tokenAddress].idCounter += 1;
 
+    //delete balances
+    // uint currentBucketId = bucketInfo[_tokenAddress].idCounter;
+    // delete deposits[_tokenAddress][currentBucketId];
     //Here is how a delete would work. Basically whipe out all mappings of deposits for token/bucket combo
-    delete deposits[_tokenAddress][transferredBucketId];
+    // delete deposits[_tokenAddress][transferredBucketId];
     emit TransferToPoly(_tokenAddress, transferredBucketId, transferAmount);
   }
 }
