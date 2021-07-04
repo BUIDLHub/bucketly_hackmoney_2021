@@ -8,6 +8,7 @@ import Container from "../elements/Card/Container";
 import Section from "../elements/Card/Section";
 import Field from "../elements/Card/Field";
 
+import DERC20 from "../../assets/images/DERC20.svg";
 
 import Button from "../elements/Buttons/SubmitButton";
 
@@ -19,7 +20,7 @@ return (
      </Row>
      <Container>
          <Section>
-         <TokenAndAmtRow />
+         <WithdrawTableRow />
          </Section>
      </Container>
      <Row className={cn(full, 'pt-3', nMP, allC)}> {/* Ideally this would be right aligned */}
@@ -32,56 +33,36 @@ return (
 export default Withdraw;
 
 
-const TokenAndAmtRow = () => {
+const WithdrawTableRow = () => {
 return (
     <Row className={cn(full, 'py-1', nMP, allC)}>
         <Col xs="2" className={cn(full, nMP, allC)}>
-            <Field>
-                <p>token</p>
+            <Field input>
+                <img src={DERC20} alt="DERC20" className={cn('derc20')} />
             </Field>
         </Col>
         <Col xs="4" className={cn(full, nMP, allC)}>
-            <Field>
-            <p>Token Selector</p>
+            <Field input>
+
+                <p className={cn(full, nMP, 'text-white', 'bold', 'roboto', 'text-size-20', 'pl-1')}>DERC20</p>
+                <p className={cn(full, nMP, 'text-light', 'regular', 'roboto', 'text-size-15', 'pl-1')}>Dummy ERC20</p>
+
             </Field>
             
         </Col>
         <Col xs="6" className={cn(full, nMP, allC)}>
-            <Field>
-                <p>balance</p>
+            <Field input>
+            <Row className={cn(full, nMP, allC)}>
+                    <Col xs="4" className={cn(full, nMP, aL)} />
+                    <Col xs="8" className={cn(full, nMP, aR)}>
+                        {/* technically there'd be an input field here */}
+                        <p className={cn(full, nMP, 'text-white', 'text-right', 'pr-1', 'regular', 'roboto', 'text-size-15', aR)}>Transfered:</p>
+                        <p className={cn(full, nMP, 'text-light', 'text-right', 'pr-1', 'bold', 'roboto-mono', 'text-size-20', aR)}>10 DERC20</p>
+                    </Col>
+                </Row>
             </Field>
         </Col>
         
     </Row>
-)
-}
-
-// layout of 3 column fields inside the estimates section
-const EstimatesRow = () => {
-    return (
-        <Row className={cn(full, 'py-1', nMP, allC)}>
-            <EstimateField title="Estimated Today" amt="AMT" />
-            <EstimateField title="Estimated Bucket Cost" amt="AMT" />
-            <EstimateField title="Estimated Savings" amt="AMT" />
-        </Row>
-    )
-}
-
-// for the styling of the data title and amount
-const EstimateField = ({title, amt}) => {
-return (
-    <Col xs="4" className={cn(full, nMP, aL)}>
-        <Field>
-        {/* <div className={cn(full, 'px-1', nMP)}> */}
-                <Row className={cn(full, nMP)}>
-                    <p className={cn(nMP, 'roboto', 'text-size-15', 'regular')}>{title}</p>
-                </Row>
-                <Row className={cn(full, nMP)}>
-                    <p className={cn(nMP, 'roboto-mono', 'text-size-20', 'regular')}>{amt}</p>
-                </Row>
-                {/* </div>     */}
-        </Field>
-            
-    </Col>
 )
 }

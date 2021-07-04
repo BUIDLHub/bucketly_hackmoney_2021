@@ -15,7 +15,7 @@ const CollapsibleSection = (props) => {
       </div>
       <Collapse isOpen={isOpen}>
           <div className={cn('px-1', 'py-1', 'text-white')}>
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+          {props.a}
           </div>
       </Collapse>
     </div>

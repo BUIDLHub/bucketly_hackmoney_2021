@@ -23,13 +23,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-.link-hover {
-  &:hover {
-    cursor: pointer;
-    color: $light !important;
-    filter: drop-shadow( 0 0 0.75rem $white)
-}
-}
+
 
 .h-100 {
 min-height: 90vh !important;
@@ -38,6 +32,28 @@ min-height: 90vh !important;
 .top {
   top: 0;
 }
+
+////////////////////////////
+// INPUTS
+////////////////////////////
+
+.clickable {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.link-hover {
+  &:hover {
+    cursor: pointer;
+    color: $light !important;
+    filter: drop-shadow( 0 0 0.75rem $white)
+}
+}
+
+////////////////////////////
+// FONTS
+////////////////////////////
 
 .roboto {
   font-family: 'Roboto', sans-serif;
@@ -79,17 +95,21 @@ min-height: 90vh !important;
   font-weight: 800;
 }
 
-.font-size-30 { 
+.text-size-30 { 
   font-size: 30px;
 }
 
-.font-size-20 {
-  font-size: 20px;
+.text-size-20 {
+  font-size: 20px !important;
 }
 
-.font-size-15 {
-  font-size: 15px;
+.text-size-15 {
+  font-size: 15px !important;
 }
+
+////////////////////////////
+// Utility
+////////////////////////////
 
 .showmewhatyouvegot {
   border: 1px solid $black;
@@ -99,8 +119,10 @@ min-height: 90vh !important;
   border: 1px solid $white;
 }
 
-.clickable {
-  &:hover {
-    cursor: pointer;
-  }
+////////////////////////////
+// Colors
+////////////////////////////
+
+.text-light {
+  color: $light !important;
 }

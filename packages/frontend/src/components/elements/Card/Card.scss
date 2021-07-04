@@ -22,7 +22,6 @@
 }
 
 .field-styles {
-    background: $fieldcontainer;
     border-radius: 5px;
     opacity: 0.9;
 
@@ -33,4 +32,12 @@
     &:focus {
         border: 0.5px solid $light;
     }
+}
+
+.field-data {
+    background: $fieldcontainer;
+}
+
+.field-input {
+    background: $inputfieldcontainer;
 }

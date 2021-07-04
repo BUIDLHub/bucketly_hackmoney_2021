@@ -19,14 +19,18 @@ return (
      </Row>
      <LogRow />
      <LogRow />
-     <Row className={cn(full, 'pt-3', nMP, aL)}>
-     <p className={cn('text-white', 'regular', 'roboto', 'text-size-20', 'text-uppercase')}>All Logs</p>
+     
+     
+     {/* Stretch Goal in the future: all logs */}
+     {/* <Row className={cn(full, 'pt-3', nMP, aL)}>
+        <p className={cn('text-white', 'regular', 'roboto', 'text-size-20', 'text-uppercase')}>All Logs</p>
      </Row>
-     <LogRow />
-     <LogRow />
-     <LogRow />
-     <LogRow />
-     <LogRow />
+        <LogRow />
+        <LogRow />
+        <LogRow />
+        <LogRow />
+        <LogRow />
+    */}
  </Card>
 )
 }
@@ -42,10 +46,10 @@ return (
             <p>Txn ID</p>
             </Col>
             <Col xs="4" className={cn(full, nMP, aL)}>
-<p>Etherscan Link</p>
+                <p>Etherscan Link</p>
             </Col>
             <Col xs="4" className={cn(full, nMP, aL)}>
-<p>AMT TKN</p>
+                <p>AMT TKN</p>
             </Col>
             <Col xs="2" className={cn(full, nMP, aL)}>
                 <p>Status</p>

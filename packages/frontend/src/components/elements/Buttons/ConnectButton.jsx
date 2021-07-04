@@ -5,7 +5,8 @@ import { useWeb3React } from '@web3-react/core';
 import { injected } from '../../../util';
 // import { WalletContext } from "../../providers/wallet"; // add the providers context
 import cn from "classnames";
-import {full, allC, tCR, jC, aC} from "../../../scss/alignments";
+import {full, allC, tCR, jC, aC, nMP, aR} from "../../../scss/alignments";
+import {Row, Col} from 'reactstrap';
 import ButtonText from "../Text/ButtonText";
 import styles from "./Buttons.scss";
 
@@ -46,31 +47,45 @@ const ConnectButton = () => {
     //     }
     //   }
 
-    const className = account ? cn("get-started-btn") : "btn btn-primary my-2 my-sm-0";
-    const buttonText = account ? "Get Started" : "Connect";
+    const connected = account && injected;
 
-    return account ? (
+    // const className = account ? cn("get-started-btn") : "btn btn-primary my-2 my-sm-0";
+    // const buttonText = account ? "Get Started" : "Connect";
+
+    return connected ? (
       <React.Fragment>
+        {/* DISCONNECTED */}
             <div className={cn('pt-1', tCR, full)}>
-                  {/* {account.slice(0, 6)+"..."+account.slice(account.length - 4, account.length)} */}
-                  <div className={cn('text-white')}>
-                  <Address/>
-                    </div>
-                 <NetworkStatus />
-                 <div className={cn('pt-2', 'text-white')}>
-                 <Balance />  
-                 </div>
-                 
+                  
+                <div className={cn('connect-button', 'connect-button-padding', 'clickable', jC, aC, allC)} to="/dashboard">
+                      <div className={cn(allC, full)} onClick={() => activate(injected)}>
+                            <Row className={cn(full, nMP, allC)}>
+                                <Col xs="10" className={cn(full, nMP)}>
+                                  <ButtonText text="Connect Wallet" className={cn(allC)} />
+                                </Col>
+                                <Col xs="2" className={cn(full, nMP)}>
+                                <div className={cn(full, 'pb-3', nMP, aR)}>
+                                <NetworkStatus /> 
+                            </div>
+                                </Col>
+                            </Row>
+                      </div>
+                </div>
+
             </div>
       </React.Fragment>
     ) : (
       <React.Fragment>
-        <div className={cn('connect-button', 'connect-button-padding', 'clickable', jC, aC, allC)} to="/dashboard">
-            <div className={cn(allC, full)} onClick={() => activate(injected)}>
-                  {/* {account.slice(0, 6)+"..."+account.slice(account.length - 4, account.length)} */}
-                  <ButtonText text="Connect Wallet" className={cn(allC)} />
-            </div>
+            {/* CONNECTED */}
+        <div className={cn('connect-button', 'connect-button-padding', jC, aC, allC)} to="/dashboard">
            
+        <div className={cn('text-white')}>
+                  <Address/>
+                    </div>
+                 <NetworkStatus />
+                 <div className={cn('pt-2', 'text-white')}>
+                     <Balance />  
+                 </div>
         </div>
       </React.Fragment>
     )

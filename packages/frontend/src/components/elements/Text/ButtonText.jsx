@@ -4,7 +4,7 @@ import styles from "./text.scss";
 
 const ButtonText = ({text}) => {
 return (
-    <p className={cn('text-white', 'font-size-20', 'bold', 'roboto')}>{text}</p>
+    <p className={cn('text-white', 'text-size-20', 'bold', 'roboto')}>{text}</p>
 )
 }
 
