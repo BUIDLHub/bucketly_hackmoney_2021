@@ -5,17 +5,21 @@ import { useWeb3React } from '@web3-react/core';
 import { injected } from '../../../util';
 // import { WalletContext } from "../../providers/wallet"; // add the providers context
 import cn from "classnames";
-import {full, allC, jC, aC} from "../../../scss/alignments";
+import {full, allC, tCR, jC, aC} from "../../../scss/alignments";
 import ButtonText from "../Text/ButtonText";
 import styles from "./Buttons.scss";
 
-const providerOptions = {};
+import Address from "../Web3/Address";
+import NetworkStatus from "../Web3/NetworkStatus";
+import Balance from "../Web3/Balance";
 
-const web3Modal = new Web3Modal({
-  network: "kovan", // optional
-  cacheProvider: true, // optional
-  providerOptions // required
-});
+// const providerOptions = {};
+
+// const web3Modal = new Web3Modal({
+//   network: "kovan", // optional
+//   cacheProvider: true, // optional
+//   providerOptions // required
+// });
 
 const ConnectButton = () => {
 
@@ -47,22 +51,28 @@ const ConnectButton = () => {
 
     return account ? (
       <React.Fragment>
+            <div className={cn('pt-1', tCR, full)}>
+                  {/* {account.slice(0, 6)+"..."+account.slice(account.length - 4, account.length)} */}
+                  <div className={cn('text-white')}>
+                  <Address/>
+                    </div>
+                 <NetworkStatus />
+                 <div className={cn('pt-2', 'text-white')}>
+                 <Balance />  
+                 </div>
+                 
+            </div>
+      </React.Fragment>
+    ) : (
+      <React.Fragment>
         <div className={cn('connect-button', 'connect-button-padding', 'clickable', jC, aC, allC)} to="/dashboard">
-            <div className={cn(allC, full)} onClick={() => activate(injected)}>>
+            <div className={cn(allC, full)} onClick={() => activate(injected)}>
                   {/* {account.slice(0, 6)+"..."+account.slice(account.length - 4, account.length)} */}
                   <ButtonText text="Connect Wallet" className={cn(allC)} />
             </div>
            
         </div>
       </React.Fragment>
-    ) : (
-      <button
-        className={className}
-        type="button"
-        onClick={() => activate(injected)}>
-      >
-        {buttonText}
-      </button>
     )
 
 };
