@@ -5,6 +5,7 @@ describe("Test BucketERC20 contract deployment and create bucket function", () =
   let BucketERC20Instance;
   let DummyERC20Instance;
   const depositManagerContract = config.default.web3.DepositManager;
+  const bucketL2Address = config.default.web3.bucketL2;
   
   beforeEach(async () => {
     // Deploy dummy ERC20 contract 
@@ -13,7 +14,7 @@ describe("Test BucketERC20 contract deployment and create bucket function", () =
 
     // Deploy Bucket contract
     const BucketERC20 = await ethers.getContractFactory("BucketERC20");
-    BucketERC20Instance = await BucketERC20.deploy(depositManagerContract, DummyERC20Instance.address, "DMY", "1000", "100", "300");
+    BucketERC20Instance = await BucketERC20.deploy(depositManagerContract, DummyERC20Instance.address, bucketL2Address, "DMY", "1000", "100", "300");
   })
 
   it("Check if contract is deployed properly by calling public value", async () => {
@@ -22,7 +23,7 @@ describe("Test BucketERC20 contract deployment and create bucket function", () =
   });
 
   it("Should emit an event when executing createBucket function", async () => {
-    await expect(BucketERC20Instance.createBucket(10000))
+    await expect(BucketERC20Instance.createBucket())
     .to.emit(BucketERC20Instance, 'BucketCreated')
   });
   
@@ -30,7 +31,7 @@ describe("Test BucketERC20 contract deployment and create bucket function", () =
     let bucketCount = await BucketERC20Instance.bucketIdCount.call();
     expect(bucketCount).to.equal(1);
 
-    await BucketERC20Instance.createBucket(10000);
+    await BucketERC20Instance.createBucket();
     bucketCount = await BucketERC20Instance.bucketIdCount.call();
     expect(bucketCount).to.equal(2);
   });
@@ -39,7 +40,7 @@ describe("Test BucketERC20 contract deployment and create bucket function", () =
     let activeBucketId = await BucketERC20Instance.activeBucketId.call();
     expect(activeBucketId).to.equal(1);
     
-    await BucketERC20Instance.createBucket(10000);
+    await BucketERC20Instance.createBucket();
     activeBucketId = await BucketERC20Instance.activeBucketId.call();
     expect(activeBucketId).to.equal(2);
   });
@@ -47,7 +48,7 @@ describe("Test BucketERC20 contract deployment and create bucket function", () =
   it("Should set bucket expirationDate properly", async () => {
     const currentExpirationDate = await BucketERC20Instance.expirationDate.call();
     
-    await BucketERC20Instance.createBucket(10000);
+    await BucketERC20Instance.createBucket();
     const newExpirationDate = await BucketERC20Instance.expirationDate.call();
     expect(parseInt(newExpirationDate)).to.greaterThan(parseInt(currentExpirationDate));
   });
@@ -55,7 +56,7 @@ describe("Test BucketERC20 contract deployment and create bucket function", () =
   it("Should set bucket expirationDate properly", async () => {
     const currentExpirationDate = await BucketERC20Instance.expirationDate.call();
     
-    await BucketERC20Instance.createBucket(10000);
+    await BucketERC20Instance.createBucket();
     const newExpirationDate = await BucketERC20Instance.expirationDate.call();
     expect(parseInt(newExpirationDate)).to.greaterThan(parseInt(currentExpirationDate));
   });

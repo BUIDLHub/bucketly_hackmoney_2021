@@ -17,57 +17,57 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract BucketERC20 {
   uint public bucketIdCount;
   uint public activeBucketId;
-  uint public minimumReserve;
-  uint public thresholdAmount;
-  uint256 public expirationTime;
   uint256 public expirationDate;
-  address public erc20Address;
   address public depositManagerContract;
-  string public tokenName;
+  address public bucketL2Address;
 
-  mapping (uint => mapping (address => uint)) public deposits;
+  struct BucketInfo {
+    uint idCounter;
+    uint expirationTime;
+    uint thresholdAmount;
+  }
+  
+  mapping (uint => mapping (address => mapping (address => uint))) deposits; // mapping keys: bucketId => tokenAddress => depositorAddress => balance
+  mapping(address => BucketInfo) bucketInfo; // mapping keys: tokenAddress => BucketInfo
 
-  event BucketCreated(uint indexed id, string token, uint indexed triggerAmount, uint indexed expirationDate);
+  event BucketCreated(uint indexed id, uint indexed triggerAmount, uint indexed expirationDate);
   event Deposit(uint indexed bucketId, uint indexed amount, address indexed depositor);
   event Withdraw(uint indexed bucketId);
   event TransferToPoly(uint indexed bucketId, uint indexed totalAmount);
   event InsufficientReserve(uint indexed bucketId);
   
-  constructor(address _depositManagerContract, address _erc20Address, string memory _tokenName, uint _thresholdAmount, uint _minimumReserve, uint256 _expirationTime) {
+  constructor(address _depositManagerContract, address _bucketL2Address) {
     depositManagerContract = _depositManagerContract;
-    erc20Address = _erc20Address;
+    bucketL2Address = _bucketL2Address;
     bucketIdCount = 0;
-    minimumReserve = _minimumReserve;
-    tokenName = _tokenName;
-    thresholdAmount = _thresholdAmount;
-    expirationTime = _expirationTime;
-
-    createBucket();
   }
 
-  function createBucket() public {
-    bucketIdCount = bucketIdCount + 1;
-    uint id = bucketIdCount;
-    activeBucketId = bucketIdCount;
-    expirationDate = block.timestamp + expirationTime;
-    emit BucketCreated(id, tokenName, thresholdAmount, expirationDate);
+  function createBucket(address tokenAddress, uint _expirationTime, uint _thresholdAmount) public {
+    bucketInfo[tokenAddress].idCounter += 1;
+    bucketInfo[tokenAddress].expirationTime += _expirationTime;
+    bucketInfo[tokenAddress].thresholdAmount += _thresholdAmount;
+
+    expirationDate = block.timestamp + _expirationTime;
+    emit BucketCreated(bucketInfo[tokenAddress].idCounter, _thresholdAmount, expirationDate);
   }
 
-  function deposit(uint depositAmount) public {
-    ERC20 tokenContract = ERC20(erc20Address);
+  function deposit(address _tokenAddress, uint depositAmount) public {
+    ERC20 tokenContract = ERC20(_tokenAddress);
     require(tokenContract.balanceOf(msg.sender) >= depositAmount, "Insufficient balance");
     require(tokenContract.allowance(msg.sender, address(this)) >= depositAmount, "Insufficient allowance");
+    
     require(tokenContract.transferFrom(msg.sender, address(this), depositAmount), "Could not transfer tokens from depositor");
-    deposits[activeBucketId][msg.sender] = depositAmount;
+    deposits[activeBucketId][_tokenAddress][msg.sender] = depositAmount;
     emit Deposit(activeBucketId, depositAmount, msg.sender);
   }
 
-  function makeTransfer(uint _amount) public {
-    ERC20 tokenContract = ERC20(erc20Address);
+  function makeTransfer(address _tokenAddress, uint _amount) public {
+    ERC20 tokenContract = ERC20(_tokenAddress);
     require(tokenContract.balanceOf(address(this)) >= _amount, "Insufficient balance");
+    
     require(tokenContract.approve(depositManagerContract, _amount), "Could not approve depositManagerContract");
-    IDepositManager(depositManagerContract).depositERC20(erc20Address, _amount);
-    createBucket();
+    IDepositManager(depositManagerContract).depositERC20(_tokenAddress, _amount);
+    createBucket(_tokenAddress, bucketInfo[_tokenAddress].expirationTime, bucketInfo[_tokenAddress].thresholdAmount);
     emit TransferToPoly(activeBucketId, _amount);
   }
   
