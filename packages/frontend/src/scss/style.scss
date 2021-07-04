@@ -1,0 +1,21 @@
+// bootstrap
+// @import './vendors/variables';
+
+// mixins
+@import 'mixins';
+
+
+// color pallete
+@import 'colors';
+
+
+// fonts
+@import 'fonts';
+
+
+// custom classes
+@import './custom';
+
+
+// the rest of it
+@import '../components/Components.scss';

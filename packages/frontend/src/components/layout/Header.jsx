@@ -1,24 +1,34 @@
-import React from "react";
-import iconWhite from "../../assets/images/bucetklywhite.svg";
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import React, { useLayoutEffect } from "react";
+import iconWhite from "../../assets/images/bucketlywhite.svg";
+import { Navbar, NavbarBrand, Nav, NavItem } from 'reactstrap';
+import LogoBlock from "../elements/Logo/BucketlyBrand";
+import cn from "classnames";
+import {lC, nMP, full, tCR} from "../../scss/alignments";
+import ConnectButton from "../elements/Buttons/ConnectButton";
+import style from './layout.scss';
+
+import NavLink from "../elements/Text/Navlink";
+
 // import ConnectButton from "../elements/ConnectButton";
 
 const Header = () => {
     return (
-<div>
-      <Navbar color="faded" light>
-        <NavbarBrand href="/" className="mr-auto">reactstrap</NavbarBrand>
-        <NavbarToggler onClick={toggleNavbar} className="mr-2" />
-        <Collapse isOpen={!collapsed} navbar>
-          <Nav navbar>
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
+    <div className={cn(full, 'top', 'nav-container')}>
+      <Navbar className={cn('px-3', )} dark>
+        <NavbarBrand href="/" className={cn(lC, nMP)}>
+<LogoBlock />
+        </NavbarBrand>
+          <Nav navbar className={cn('ml-auto', tCR)}>
+            <NavItem className={cn('pt-3')}>
+              <NavLink href="#/" text="Support" />
+            </NavItem>
+            <NavItem className={cn('pt-3')}>
+              <NavLink href="#" text="Docs"  />
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <ConnectButton />
             </NavItem>
           </Nav>
-        </Collapse>
       </Navbar>
     </div>
     )

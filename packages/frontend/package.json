@@ -11,18 +11,22 @@
     "@web3-react/injected-connector": "^6.0.7",
     "bootstrap": "4.6.0",
     "classnames": "^2.3.1",
+    "cross-env": "^7.0.3",
     "ethers": "^5.4.0",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",
     "react-identicons": "^1.2.5",
-    "react-scripts": "4.0.3",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
     "reactstrap": "^8.9.0",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "web3": "^1.4.0",
+    "web3modal": "^1.9.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env NODE_PATH=src SASS_PATH=node_modules:src/scss react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
