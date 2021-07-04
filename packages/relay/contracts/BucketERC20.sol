@@ -43,6 +43,8 @@ contract BucketERC20 {
     bucketL2Address = _bucketL2Address;
   }
 
+  //WARNING: this must be locked down to admin only (see BaseAccess contract to extend and get that working)
+  // or anyone can call to create a new bucket at any time!
   function createBucket(address _tokenAddress, uint _expirationTime, uint _thresholdAmount, uint _fee) public {
     bucketInfo[_tokenAddress].idCounter += 1;
     bucketInfo[_tokenAddress].expirationTime += _expirationTime;
@@ -54,6 +56,7 @@ contract BucketERC20 {
     emit BucketCreated(bucketInfo[_tokenAddress].idCounter, _thresholdAmount, bucketInfo[_tokenAddress].expirationDate);
   }
 
+  //WARNING: all of these setters need to be locked down to admin only
   function setExpirationTime(address _tokenAddress, uint _expirationTime) public {
     bucketInfo[_tokenAddress].expirationTime = _expirationTime;
   }
@@ -69,6 +72,7 @@ contract BucketERC20 {
   function setFee(address _tokenAddress, uint _fee) public {
     bucketInfo[_tokenAddress].fee = _fee;
   }
+
 
   function deposit(address _tokenAddress, uint depositAmount) public {
     ERC20 tokenContract = ERC20(_tokenAddress);
@@ -105,6 +109,8 @@ contract BucketERC20 {
     require(tokenContract.balanceOf(address(this)) >= transferAmount, "Insufficient balance");
     
     require(tokenContract.approve(depositManagerContract, transferAmount), "Could not approve depositManagerContract");
+    
+    //WARNING: this is  incorrect. It needs to deposit on behalf of the L2 contract "user"
     IDepositManager(depositManagerContract).depositERC20(_tokenAddress, transferAmount);
     
     //delete balances
@@ -114,6 +120,9 @@ contract BucketERC20 {
     //+= 1 bucketID
     uint transferredBucketId = bucketInfo[_tokenAddress].idCounter;
     bucketInfo[_tokenAddress].idCounter += 1;
+
+    //Here is how a delete would work. Basically whipe out all mappings of deposits for token/bucket combo
+    delete deposits[_tokenAddress][transferredBucketId];
     emit TransferToPoly(_tokenAddress, transferredBucketId, transferAmount);
   }
 }
