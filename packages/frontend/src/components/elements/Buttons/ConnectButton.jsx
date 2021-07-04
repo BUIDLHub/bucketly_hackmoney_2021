@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
+import { useWeb3React } from '@web3-react/core';
+import { injected } from '../../../util';
 // import { WalletContext } from "../../providers/wallet"; // add the providers context
 import cn from "classnames";
 import {full, allC, jC, aC} from "../../../scss/alignments";
@@ -16,6 +18,9 @@ const web3Modal = new Web3Modal({
 });
 
 const ConnectButton = () => {
+
+  const { activate } = useWeb3React();
+
 
     const account = [0x0e75f6E1a3C8CaACD9Ee46FB5E54883AAAF58566];
 
@@ -43,7 +48,7 @@ const ConnectButton = () => {
     return account ? (
       <React.Fragment>
         <div className={cn('connect-button', 'connect-button-padding', 'clickable', jC, aC, allC)} to="/dashboard">
-            <div className={cn(allC, full)}>
+            <div className={cn(allC, full)} onClick={() => activate(injected)}>>
                   {/* {account.slice(0, 6)+"..."+account.slice(account.length - 4, account.length)} */}
                   <ButtonText text="Connect Wallet" className={cn(allC)} />
             </div>
@@ -54,7 +59,7 @@ const ConnectButton = () => {
       <button
         className={className}
         type="button"
-        // onClick={connect} // add this function back in
+        onClick={() => activate(injected)}>
       >
         {buttonText}
       </button>
