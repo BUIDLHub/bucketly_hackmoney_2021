@@ -1,9 +1,9 @@
 import { Button } from 'react-bootstrap';
 import { useWeb3React } from '@web3-react/core';
-import { injected } from '../util';
+import { injected } from '../../../util';
 
 const WalletConnect = () => {
-  const { activate } = useWeb3React();
+  const { activate, active } = useWeb3React();
 
   return (
     <Button variant="outline-secondary" className="fw-normal rounded-0"

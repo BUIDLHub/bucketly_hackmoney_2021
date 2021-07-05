@@ -1,0 +1,35 @@
+@import "../../scss/colors";
+
+.nav-container {
+    background: $navcontainer !important;
+    // padding-top: -1rem !important;
+    // padding-bottom: -1rem !important;
+
+    .nav-link {
+        color: $white !important;
+        padding-right: 2rem !important;
+        
+        &:hover {
+            cursor: pointer;
+            color: $light !important;
+        }
+    }
+}
+
+.derc20 {
+    max-height: 52px;
+}
+
+.unlock {
+    max-height: 50px;
+}
+
+.doughnut-img {
+    min-width: 250px;
+    max-width: 250px;
+}
+
+.progress-img {
+    min-width: 250px;
+    max-width: 250px;
+}

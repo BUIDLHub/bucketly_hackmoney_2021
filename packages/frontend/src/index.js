@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'react-circular-progressbar/dist/styles.css';
 import App from './App';
 import { Web3ReactProvider } from '@web3-react/core'
 import { getLibrary } from './util';

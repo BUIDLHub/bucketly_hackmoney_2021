@@ -1,0 +1,155 @@
+
+
+@-ms-viewport {
+    width: device-width;
+  }
+  
+  *,
+  *:after,
+  *:before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    margin: 0;
+    // background: theme-color('main-bg');
+    background: linear-gradient(to bottom right, #801481, #331871);
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+
+
+.h-100 {
+min-height: 90vh !important;
+}
+
+.top {
+  top: 0;
+}
+
+////////////////////////////
+// INPUTS
+////////////////////////////
+
+.clickable {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.link-hover {
+  &:hover {
+    cursor: pointer;
+    color: $light !important;
+    filter: drop-shadow( 0 0 0.75rem $white)
+}
+}
+
+////////////////////////////
+// FONTS
+////////////////////////////
+
+.roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+.manrope {
+  font-family: 'Manrope', 'Roboto', sans-serif;
+}
+
+.roboto-mono {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.extralight {
+  font-weight: 200;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.extrabold {
+  font-weight: 800;
+}
+
+.text-size-30 { 
+  font-size: 30px;
+}
+
+.text-size-20 {
+  font-size: 20px !important;
+}
+
+.text-size-15 {
+  font-size: 15px !important;
+}
+
+////////////////////////////
+// Utility
+////////////////////////////
+
+.showmewhatyouvegot {
+  border: 1px solid $black;
+}
+
+.showmewhatyouhave {
+  border: 1px solid $white;
+}
+
+////////////////////////////
+// Colors
+////////////////////////////
+
+.text-light {
+  color: $light !important;
+}
+
+
+////////////////////////////
+// Cards
+////////////////////////////
+
+.main-card {
+  min-height: 550px !important;
+  max-height: 550px !important;
+  min-width: 605px !important;
+  max-width: 605px !important;
+}
+
+.doughnut-card {
+  min-height: 340px !important;
+  max-height: 340px !important;
+  min-width: 350px !important;
+  max-width: 350px !important;
+
+}
+
+.progress-card {
+  min-height: 210px !important;
+  max-height: 210px !important;
+  min-width: 350px !important;
+  max-width: 350px !important;
+}

@@ -1,0 +1,13 @@
+@import "../../../scss/colors";
+
+.nav-logo {
+    max-height: 60px;
+}
+
+.nav-logo-text {
+    font-weight: 800 !important;
+    font-family: 'Roboto';
+    letter-spacing: 0.2em;
+    font-size: 3rem;
+    color: $white !important;
+}
