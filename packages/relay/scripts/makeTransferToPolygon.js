@@ -10,13 +10,9 @@ async function main() {
   );
 
   console.log("Account balance:", (await owner.getBalance()).toString());
-
   const BucketERC20Instance = await new ethers.Contract(config.default.web3.bucketL1, BucketERC20Interface.abi, owner);
-  //function createBucket(address _tokenAddress, uint _expirationTime, uint _thresholdAmount, uint _fee)
-  // expirationTime : 86400 s => 24h
-  // threshold : 1000 ERC20
-  // fee : 1 => 0.01%
-  await BucketERC20Instance.createBucket(config.default.web3.testERC20L1, "1", "1", "1");
+
+  await BucketERC20Instance.makeTransfer(config.default.web3.testERC20L1, "100000000000000000");
 }
 
 main()

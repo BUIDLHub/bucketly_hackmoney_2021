@@ -200,6 +200,3 @@ describe("Test BucketERC20 contract deployment and create bucket function", () =
     expect(parseInt(bucketBalance)).to.equal(depositAmount * 2 / 100);
   });
 });
-
-1625408717
-10000000001625408712
