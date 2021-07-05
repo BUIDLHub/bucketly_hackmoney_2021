@@ -5,7 +5,7 @@ import LogoBlock from "../elements/Logo/BucketlyBrand";
 import cn from "classnames";
 import {lC, nMP, full, tCR} from "../../scss/alignments";
 import ConnectButton from "../elements/Buttons/ConnectButton";
-import style from './layout.scss';
+import './layout.scss';
 
 import NavLink from "../elements/Text/Navlink";
 

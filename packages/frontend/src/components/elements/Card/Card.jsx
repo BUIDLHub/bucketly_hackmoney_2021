@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { Row, Col } from 'reactstrap';
+import React from 'react';
 import {full, allC, nMP, tC} from "../../../scss/alignments";
 import cn from "classnames";
 
-import styles from "./Card.scss";
+import "./Card.scss";
 
 // Cards > Containers > Sections > Fields
 

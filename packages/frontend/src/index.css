@@ -58,3 +58,12 @@ code {
   }
 }
 /* ///////////////////////////////////////////// */
+
+/* Circular Progress Bar */
+.CircularProgressbar-path {
+  stroke: #a98bea !important;
+}
+
+.CircularProgressbar-text {
+  fill: whitesmoke !important;
+}

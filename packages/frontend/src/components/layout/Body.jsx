@@ -4,7 +4,7 @@ import {noMarginPad, allCenter, full, topCenter} from "../../scss/alignments";
 import { Row, Col } from "reactstrap";
 import FAQs from "../elements/FAQs/FAQs";
 import Charts from "./Charts";
-import style from './layout.scss';
+import './layout.scss';
 
 const Body = ({children}) => {
     return (

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {lC, full, nMP, aL} from '../../../scss/alignments';
 import cn from "classnames";
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
-import styles from "./Tabs.scss";
+import "./Tabs.scss";
 import TabText from "../Text/TabText";
 
 import Transfer from "../../layout/Transfer";
