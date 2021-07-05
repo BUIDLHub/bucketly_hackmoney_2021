@@ -436,8 +436,8 @@
       ]
     },
     "C:\\Users\\rapha\\Documents\\IT\\bucketly_hackmoney_2021\\packages\\relay\\contracts\\BucketERC20.sol": {
-      "lastModificationDate": 1625423973116,
-      "contentHash": "b8fb1f99399f2e612ff5b16ef6834cdb",
+      "lastModificationDate": 1625431478535,
+      "contentHash": "3ab966f0270fa4a61578315a6e065478",
       "sourceName": "contracts/BucketERC20.sol",
       "solcConfig": {
         "version": "0.8.0",
