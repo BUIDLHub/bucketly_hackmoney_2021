@@ -1,0 +1,42 @@
+@import "../../../scss/colors";
+
+.card-styles {
+    background: linear-gradient(to bottom, $card-gradient-light, $card-gradient-dark);
+    border-radius: 5px;
+}
+
+.card-shadow {
+    filter: drop-shadow(0 0 0.75rem rgba(117, 0, 118, 0.42));
+}
+
+.container-styles {
+    background: $cardcontainer;
+    border-radius: 5px;
+}
+
+.section-styles {
+    background: $cardsectioncontainer;
+    border-radius: 5px;
+}
+
+.field-styles {
+    border-radius: 5px;
+    opacity: 0.9;
+
+    &:hover, &:focus {
+        opacity: 1;
+    }
+
+    &:focus {
+        border: 0.5px solid $light;
+    }
+}
+
+.field-data {
+    background: $fieldcontainer;
+}
+
+.field-input {
+    background: $inputfieldcontainer;
+}
+

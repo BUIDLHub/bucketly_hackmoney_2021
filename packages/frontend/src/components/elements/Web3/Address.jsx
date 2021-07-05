@@ -5,7 +5,7 @@ const Address = () => {
   const { account } = useWeb3React()
 
   return (
-    <span className="d-inline-flex align-items-center border px-2 py-1">
+    <span className="d-inline-flex align-items-center px-2 py-1">
       {account && <span className="pr-2"><Icon string={account} size={25} /></span>}
       <span>
         {account === null
