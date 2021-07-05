@@ -14,19 +14,39 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const ethers_1 = require("ethers");
 const config_1 = __importDefault(require("../config/config"));
-const web3Functions_1 = __importDefault(require("../web3/web3Functions"));
-const BucketFactory_json_1 = __importDefault(require("../contracts/contracts/BucketFactory.sol/BucketFactory.json"));
-const startL1BucketFactoryMonitor = () => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("L1BucketFactoryMonitor started");
-    const bucketFactoryAddress = config_1.default.web3.bucketFactory;
-    const bucketFactoryAbi = BucketFactory_json_1.default.abi;
+const web3Functions_1 = __importDefault(require("../functions/web3Functions"));
+const dbFunctions_1 = __importDefault(require("../functions/dbFunctions"));
+const BucketERC20_json_1 = __importDefault(require("../contracts/contracts/BucketERC20.sol/BucketERC20.json"));
+const bucketCreationMonitor = () => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("L1 bucketCreationMonitor started");
+    const bucketL1Address = config_1.default.web3.bucketL1;
+    const bucketL1Abi = BucketERC20_json_1.default.abi;
     const provider = web3Functions_1.default.getL1Provider();
-    const bucketFactoryContract = new ethers_1.ethers.Contract(bucketFactoryAddress, bucketFactoryAbi, provider);
-    bucketFactoryContract.on("BucketCreated", (token, triggerAmount, expirationDate) => {
-        console.log(`New bucket created ${token}, trigger amount: ${triggerAmount} and expiration date: ${expirationDate}`);
+    const bucketFactoryContract = new ethers_1.ethers.Contract(bucketL1Address, bucketL1Abi, provider);
+    // event BucketCreated(address tokenAddress, uint indexed id, uint indexed triggerAmount, uint indexed expirationDate);
+    bucketFactoryContract.on("BucketCreated", (tokenAddress, bucketId, triggerAmount, expirationDate) => {
+        console.log(`New bucket created ${tokenAddress}, bucket id: ${bucketId}, trigger amount: ${triggerAmount} and expiration date: ${expirationDate}`);
         //save into db
+        dbFunctions_1.default.insertNewBucket(tokenAddress, bucketId, expirationDate, triggerAmount);
     });
 });
+const depositMonitor = () => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("L1 depositMonitor started");
+    const bucketL1Address = config_1.default.web3.bucketL1;
+    const bucketL1Abi = BucketERC20_json_1.default.abi;
+    const provider = web3Functions_1.default.getL1Provider();
+    const bucketFactoryContract = new ethers_1.ethers.Contract(bucketL1Address, bucketL1Abi, provider);
+    // event Deposit(address tokenAddress, uint indexed bucketId, uint indexed amount, address indexed depositor);
+    bucketFactoryContract.on("Deposit", (tokenAddress, bucketId, amount, depositor) => {
+        console.log(`New deposit ${tokenAddress}, bucket id: ${bucketId}, amount: ${amount} and depositor: ${depositor}`);
+        //save into db
+        dbFunctions_1.default.insertNewDeposit(tokenAddress, bucketId, amount, depositor);
+    });
+});
+const startL1BucketMonitor = () => __awaiter(void 0, void 0, void 0, function* () {
+    bucketCreationMonitor();
+    depositMonitor();
+});
 exports.default = {
-    startL1BucketFactoryMonitor
+    startL1BucketMonitor
 };
