@@ -1,4 +1,4 @@
-const config = require("../build/src/config/config.js");
+// const config = require("../build/src/config/config.js");
 
 async function main() {
   const [deployer] = await ethers.getSigners();
@@ -13,18 +13,20 @@ async function main() {
   const LibAccess = await ethers.getContractFactory("LibAccess");
   LibAccessInstance = await LibAccess.deploy();
 
+  const LibMerkle = await ethers.getContractFactory("LibMerkle");
+  LibMerkleInstance = await LibMerkle.deploy();
+
   // Deploy Bucket contract
-  const BucketERC20 = await ethers.getContractFactory("BucketERC20", {
+  const L2Bucket = await ethers.getContractFactory("L2Bucket", {
     libraries: {
         LibAccess: LibAccessInstance.address,
+        LibMerkle: LibMerkleInstance.address
     }
   });
 
-  const depositManagerContract = config.default.web3.DepositManager;
-  const bucketL2Address = config.default.web3.bucketL2;
-  const BucketERC20Instance = await BucketERC20.deploy(depositManagerContract, bucketL2Address);
-  console.log("bucketL2Address:", bucketL2Address);
-  console.log("BucketERC20 deployed to:", BucketERC20Instance.address);
+  const L2BucketInstance = await L2Bucket.deploy();
+
+  console.log("L2BucketInstance deployed to:", L2BucketInstance.address);
 }
 
 main()
