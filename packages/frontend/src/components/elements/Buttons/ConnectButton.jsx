@@ -11,7 +11,7 @@ import ButtonText from "../Text/ButtonText";
 import styles from "./Buttons.scss";
 
 import Address from "../Web3/Address";
-import NetworkStatus from "../Web3/NetworkStatus";
+import NetworkStatus from "../Web3/NetworkStatus"; 
 import Balance from "../Web3/Balance";
 
 // const providerOptions = {};
@@ -24,10 +24,10 @@ import Balance from "../Web3/Balance";
 
 const ConnectButton = () => {
 
-  const { activate } = useWeb3React();
+  const { activate, active } = useWeb3React();
 
 
-    const account = [0x0e75f6E1a3C8CaACD9Ee46FB5E54883AAAF58566];
+    // const account = [0x0e75f6E1a3C8CaACD9Ee46FB5E54883AAAF58566];
 
     // const { account, setWallet } = useContext(WalletContext); // add this back in
    
@@ -47,12 +47,13 @@ const ConnectButton = () => {
     //     }
     //   }
 
-    const connected = account && injected;
+    // const connected = account && injected;
+  
 
     // const className = account ? cn("get-started-btn") : "btn btn-primary my-2 my-sm-0";
     // const buttonText = account ? "Get Started" : "Connect";
 
-    return connected ? (
+    return !active ? (
       <React.Fragment>
         {/* DISCONNECTED */}
             <div className={cn('pt-1', tCR, full)}>
@@ -77,13 +78,13 @@ const ConnectButton = () => {
     ) : (
       <React.Fragment>
             {/* CONNECTED */}
-        <div className={cn('connect-button', 'connect-button-padding', jC, aC, allC)} to="/dashboard">
+        <div className={cn('connect-button', 'connect-button-padding', 'pb-2', jC, aC, allC)} to="/dashboard">
            
         <div className={cn('text-white')}>
                   <Address/>
                     </div>
                  <NetworkStatus />
-                 <div className={cn('pt-2', 'text-white')}>
+                 <div className={cn('pt-1', 'text-white')}>
                      <Balance />  
                  </div>
         </div>

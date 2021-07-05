@@ -1,4 +1,4 @@
-import React from "react";
+import { useEagerConnect, useInactiveListener } from './hooks';
 import cn from "classnames";
 import './scss/style.scss';
 // import {alignments as align} from './scss/alignments';
@@ -9,6 +9,9 @@ import Body from "./components/layout/Body";
 import NavTabs from "./components/elements/Tabs/NavTabs";
 
 function App() {
+    const triedEager = useEagerConnect();
+    useInactiveListener(!triedEager);
+
   return (
     <div className="App">
       <Header />

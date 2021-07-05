@@ -9,7 +9,6 @@ import style from './layout.scss';
 
 import NavLink from "../elements/Text/Navlink";
 
-// import ConnectButton from "../elements/ConnectButton";
 
 const Header = () => {
     return (
