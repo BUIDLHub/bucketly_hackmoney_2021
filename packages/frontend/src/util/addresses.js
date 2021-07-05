@@ -1,5 +1,5 @@
 const addresses = {
-  bucketL1: "0x31c91FD3540b5cE5780AFe47E442814e229BC019", // Goerli
+  bucketL1: "0xb61675b164351767e5eCDC0Cc1e78E53f7fa5bd0", // Goerli
   bucketL2: "0x33A61dF860C1170C903f5BA1eF979570C962395E", // Mumbai
   testERC20L1: "0x3f152B63Ec5CA5831061B2DccFb29a874C317502", // Goerli
   testERC20L2: "0x2d7882beDcbfDDce29Ba99965dd3cdF7fcB10A1e", // Mumbai

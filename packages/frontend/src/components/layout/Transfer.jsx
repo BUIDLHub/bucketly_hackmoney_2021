@@ -3,6 +3,7 @@ import { Row, Col } from 'reactstrap';
 import { ethers } from 'ethers';
 import { useWeb3React } from '@web3-react/core';
 import { formatEther } from '@ethersproject/units';
+import { useL1Bucket } from '../../context/L1Bucket';
 import { full, allC, nMP, aL, aR } from "../../scss/alignments";
 import cn from "classnames";
 
@@ -25,6 +26,9 @@ const Transfer = () => {
     const [dercAllowance, setDercAllowance] = useState('');
 
     const { account, library } = useWeb3React();
+    // Get L1Bucket from context
+    const { L1Bucket } = useL1Bucket();
+   
     const { testERC20L1, bucketL1 } = addresses;
 
     const loadData = useCallback(async () => {

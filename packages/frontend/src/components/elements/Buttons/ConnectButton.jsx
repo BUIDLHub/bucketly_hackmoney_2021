@@ -24,7 +24,7 @@ import Balance from "../Web3/Balance";
 
 const ConnectButton = () => {
 
-  const { activate, active } = useWeb3React();
+  const { activate, deactivate, active } = useWeb3React();
 
 
   // const account = [0x0e75f6E1a3C8CaACD9Ee46FB5E54883AAAF58566];
@@ -78,7 +78,7 @@ const ConnectButton = () => {
   ) : (
     <React.Fragment>
       {/* CONNECTED */}
-      <div className={cn('connect-button', 'connect-button-padding', 'pb-2', jC, aC, allC)} to="/dashboard">
+      <div onClick={() => deactivate()} className={cn('connect-button', 'connect-button-padding', 'pb-2', jC, aC, allC)} to="/dashboard">
 
         <div className={cn('text-white')}>
           <Address />
