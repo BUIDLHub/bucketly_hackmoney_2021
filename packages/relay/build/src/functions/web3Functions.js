@@ -10,7 +10,7 @@ const getL1Provider = () => {
     if (provider) {
         return provider; //cached
     }
-    provider = new ethers_1.ethers.providers.JsonRpcProvider(config_1.default.web3.localProvider);
+    provider = new ethers_1.ethers.providers.JsonRpcProvider(config_1.default.web3.l1HttpProvider);
     return provider;
 };
 exports.default = {

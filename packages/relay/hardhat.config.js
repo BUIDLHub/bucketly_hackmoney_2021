@@ -42,6 +42,10 @@ module.exports = {
     goerli: {
       url: `https://goerli.infura.io/v3/${process.env.INFURA_ID}`,
       accounts: [`${process.env.PRIVATE_KEY}`]
+    },
+    mumbai: {
+      url: `https://matic-mumbai.chainstacklabs.com`,
+      accounts: [`${process.env.PRIVATE_KEY}`]
     }
   }
 };

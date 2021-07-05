@@ -7,7 +7,7 @@ const getL1Provider = ():ethers.providers.Provider => {
   if(provider) {
     return provider; //cached
   }
-  provider = new ethers.providers.JsonRpcProvider(config.web3.localProvider);
+  provider = new ethers.providers.JsonRpcProvider(config.web3.l1HttpProvider);
   return provider;
 };
 
