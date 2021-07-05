@@ -13,11 +13,10 @@ const Body = ({children}) => {
             <Col md="2" className={cn(noMarginPad, full)}>
                 <FAQs />
             </Col>
-            <Col xs="12" md="5" lg="4" className={cn(noMarginPad, full, allCenter)}>
+            <Col xs="12" md="5" lg="5" className={cn(noMarginPad, full, allCenter)}>
                 <div className={cn('px-5', 'py-5', topCenter)}>
                 {children}
                 </div>
-                
             </Col>
             <Col md="3" className={cn(noMarginPad, full)}>
                 <Charts />

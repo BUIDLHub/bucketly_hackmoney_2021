@@ -1,7 +1,7 @@
 import { useEagerConnect, useInactiveListener } from './hooks';
 import cn from "classnames";
 import './scss/style.scss';
-// import {alignments as align} from './scss/alignments';
+import {alignments as align} from './scss/alignments';
 
 import Header from "./components/layout/Header";
 import Body from "./components/layout/Body";
