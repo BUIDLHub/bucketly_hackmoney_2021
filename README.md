@@ -5,7 +5,7 @@ Relay, contracts, and UI repo
 <br />
 <p align="center">
   <a href="https://youtu.be/GBd2VTRmNOk">
-    <img src="https://raw.githubusercontent.com/BUIDLHub/bucketly_hackmoney_2021/master/packages/frontend/src/assets/bucketly-github-logo.png" alt="Logo" width="120" height="120">
+    <img src="https://raw.githubusercontent.com/BUIDLHub/bucketly_hackmoney_2021/master/packages/frontend/src/assets/bucketly-github-logo.png" alt="Logo" width="170.55" height="200">
   </a>
 
   <h3 align="center">Bucketly (Hackmoney 2021)</h3>
@@ -24,7 +24,9 @@ Relay, contracts, and UI repo
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="https://raw.githubusercontent.com/BUIDLHub/bucketly_hackmoney_2021/master/packages/frontend/src/assets/new-diagram.png" alt="screenshot" width="500">
+<div align="center">
+<img src="https://raw.githubusercontent.com/BUIDLHub/bucketly_hackmoney_2021/master/packages/frontend/src/assets/new-diagram.png" alt="screenshot" width="650">
+</div>
 
 **What we do.** <br/>
 Bucketly makes it more cost-effective to bridge assets to L2s, in this case Polygon. It batches L1 txns into a bucket with other txns. They all split the fees for bridging. Doing this helps you save 3 to 5 times as much on fees.
@@ -54,7 +56,9 @@ You are a depositor who wants to transfer some asset from mainnet to L2s.
 <br/>
 <br/>
 
-<img src="https://raw.githubusercontent.com/BUIDLHub/bucketly_hackmoney_2021/master/packages/frontend/src/assets/demo.png" alt="screenshot" width="500">
+<div align="center">
+<img src="https://raw.githubusercontent.com/BUIDLHub/bucketly_hackmoney_2021/master/packages/frontend/src/assets/demo.png" alt="screenshot" width="650">
+</div>
 
 **How it works** <br/>
 We used hardhat for testing, we used Web3 react for the frontend, used NodeJs for the relay development, Solidity for contracts.
