@@ -5,7 +5,7 @@ Relay, contracts, and UI repo
 <br />
 <p align="center">
   <a href="https://youtu.be/GBd2VTRmNOk">
-    <img src="https://github.com/BUIDLHub/bucketly_hackmoney_2021/tree/master/packages/frontend/src/assets/bucketly-github-logo.png" alt="Logo" width="120" height="120">
+    <img src="https://raw.githubusercontent.com/BUIDLHub/bucketly_hackmoney_2021/master/packages/frontend/src/assets/bucketly-github-logo.png" alt="Logo" width="120" height="120">
   </a>
 
   <h3 align="center">Bucketly (Hackmoney 2021)</h3>
@@ -13,11 +13,9 @@ Relay, contracts, and UI repo
   <p align="center">
     In bucketly, a bucketful of txns fire off all at once for cost-optimization. See the <a href="https://github.com/BUIDLHub/bucketly_hackmoney_2021/tree/master/packages/relay/build/src/contracts/contracts">bucket contracts</a> and the <a href="https://github.com/BUIDLHub/bucketly_hackmoney_2021/tree/master/packages/relay/build/src/merkle">dynamic merkle tree generation</a> to see some real bucket magic.
     <br />
-    ·
     <a href="https://t.me/joinchat/Xd9ripcxvWo1YzZh">Message us on Telegram</a>
     ·
     <a href="https://youtu.be/GBd2VTRmNOk">Watch the demo</a>
-    ·
     <br />
     <br />
   </p>
@@ -26,7 +24,7 @@ Relay, contracts, and UI repo
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="https://github.com/BUIDLHub/bucketly_hackmoney_2021/tree/master/packages/frontend/src/assets/new-diagram.png" alt="screenshot" width="500">
+<img src="https://raw.githubusercontent.com/BUIDLHub/bucketly_hackmoney_2021/master/packages/frontend/src/assets/new-diagram.png" alt="screenshot" width="500">
 
 **What we do.** <br/>
 Bucketly makes it more cost-effective to bridge assets to L2s, in this case Polygon. It batches L1 txns into a bucket with other txns. They all split the fees for bridging. Doing this helps you save 3 to 5 times as much on fees.
@@ -56,7 +54,7 @@ You are a depositor who wants to transfer some asset from mainnet to L2s.
 <br/>
 <br/>
 
-<img src="https://github.com/BUIDLHub/bucketly_hackmoney_2021/tree/master/packages/frontend/src/assets/demo.png" alt="screenshot" width="500">
+<img src="https://raw.githubusercontent.com/BUIDLHub/bucketly_hackmoney_2021/master/packages/frontend/src/assets/demo.png" alt="screenshot" width="500">
 
 **How it works** <br/>
 We used hardhat for testing, we used Web3 react for the frontend, used NodeJs for the relay development, Solidity for contracts.
